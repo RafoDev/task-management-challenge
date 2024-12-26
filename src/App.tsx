@@ -1,10 +1,11 @@
-import "./App.css";
-import { useGetAllTasksQuery } from "./getTasks.generated";
+import { TopNavbar } from "./features/navigation/top-navbar/top-navbar";
 
 function App() {
-  const { data, loading } = useGetAllTasksQuery();
-  if (loading) return <span>loading</span>;
-  return <>{JSON.stringify(data?.tasks)}</>;
+  return (
+    <>
+      <TopNavbar />
+    </>
+  );
 }
 
 export default App;
