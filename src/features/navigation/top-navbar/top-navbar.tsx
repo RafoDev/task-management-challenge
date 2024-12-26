@@ -2,13 +2,12 @@ import SearchIcon from "/src/assets/icons/search.svg?react";
 import NotificationIcon from "/src/assets/icons/notification.svg?react";
 import CleanIcon from "/src/assets/icons/clean.svg?react";
 import styles from "./top-navbar.module.scss";
+import { Profile } from "./components";
 
 export const TopNavbar = () => {
   return (
     <nav className={styles.container}>
-      <figure className={styles.avatar}>
-        <img src="#" alt="avatar" />
-      </figure>
+      <Profile />
       <form className={styles.inputContainer}>
         <input type="text" placeholder="Search" />
         <div className={styles.cleanIconContainer}>

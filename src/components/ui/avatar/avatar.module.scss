@@ -1,0 +1,16 @@
+@use "../../../shared/styles/variables/colors";
+
+.container {
+  margin: 0;
+  width: 32px;
+  height: 32px;
+  background-color: colors.$neutral-2;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.25s ease;
+}
