@@ -5,7 +5,7 @@ type AvatarType = Pick<User, "id" | "fullName" | "avatar"> & {
   placeholder?: boolean;
 };
 
-export const Avatar = ({ avatar, placeholder, fullName }: AvatarType) => {
+export const Avatar = ({ avatar, fullName }: AvatarType) => {
   return (
     <figure className={styles.container}>
       {avatar && <img src={avatar} alt={fullName} className={styles.img} />}
