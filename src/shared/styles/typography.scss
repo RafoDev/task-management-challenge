@@ -1,0 +1,89 @@
+@use "/src/shared/styles/variables/fonts";
+@use "/src/shared/styles/mixins/typography" as typo;
+
+.display {
+  &-xl {
+    &-regular,
+    &-bold {
+      @include typo.text-styles(64px, 88px);
+    }
+    &-bold {
+      font-weight: fonts.$main-font-weight-bold;
+    }
+  }
+  &-l {
+    &-bold,
+    &-regular {
+      @include typo.text-styles(56px, 72px);
+    }
+    &-bold {
+      font-weight: fonts.$main-font-weight-bold;
+    }
+  }
+  &-m {
+    &-bold,
+    &-regular {
+      @include typo.text-styles(48px, 56px);
+    }
+    &-bold {
+      font-weight: fonts.$main-font-weight-bold;
+    }
+  }
+  &-s {
+    &-bold,
+    &-regular {
+      @include typo.text-styles(32px, 48px);
+    }
+    &-bold {
+      font-weight: fonts.$main-font-weight-bold;
+    }
+  }
+  &-xs {
+    &-bold,
+    &-regular {
+      @include typo.text-styles(24px, 32px);
+    }
+    &-bold {
+      font-weight: fonts.$main-font-weight-bold;
+    }
+  }
+}
+
+.example {
+  &-xl {
+    &-regular,
+    &-bold {
+      @include typo.text-styles(20px, 32px, 0.75px);
+    }
+    &-bold {
+      font-weight: fonts.$main-font-weight-bold;
+    }
+  }
+  &-l {
+    &-bold,
+    &-regular {
+      @include typo.text-styles(18px, 32px, 0.75px);
+    }
+    &-bold {
+      font-weight: fonts.$main-font-weight-bold;
+    }
+  }
+  &-m {
+    &-bold,
+    &-regular {
+      @include typo.text-styles(15px, 24px, 0.75px);
+    }
+    &-bold {
+      font-weight: fonts.$main-font-weight-bold;
+    }
+  }
+  &-s {
+    &-bold,
+    &-regular {
+      @include typo.text-styles(13px, 22px, 0.25px);
+    }
+    &-bold {
+      font-weight: fonts.$main-font-weight-bold;
+    }
+  }
+}

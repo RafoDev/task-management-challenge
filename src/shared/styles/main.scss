@@ -1,0 +1,9 @@
+@use "/src/shared/styles/variables/fonts";
+@use "/src/shared/styles/variables/colors";
+@use "/src/shared/styles/typography";
+
+body {
+  margin: 0;
+  font-family: fonts.$main-font;
+  color: colors.$text-color;
+}
