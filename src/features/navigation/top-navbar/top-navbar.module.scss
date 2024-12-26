@@ -1,6 +1,61 @@
 @use "../../../shared/styles/variables/colors";
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr min-content;
+  align-items: center;
+  background-color: colors.$neutral-4;
+  color: inherit;
+  padding: 16px 24px;
+  gap: 12px;
+}
+.inputContainer {
+  width: min-content;
+  display: grid;
+  grid-template-columns: auto 0 0;
+  justify-self: end;
+  justify-content: center;
+  align-items: center;
+  grid-template-areas: "search input clear";
+  overflow: hidden;
+  &Show {
+    grid-template-columns: auto 1fr 0;
+  }
+}
+.input {
+  width: 0px;
+  padding: 0 24px;
+  grid-area: input;
+  color: inherit;
+  border: none;
+  background-color: transparent;
+  transition: width 0.1s ease;
+  &:focus {
+    outline: none;
+  }
+  &Show {
+    width: 200px;
+  }
+  ::placeholder {
+    color: colors.$neutral-2;
+  }
+}
 
-.icon {
+.searchIconContainer {
+  grid-area: search;
+}
+.cleanIconContainer {
+  grid-area: clear;
+  display: none;
+}
+
+.searchIconContainer,
+.notificationIconContainer,
+.cleanIconContainer {
   width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.icon {
+  width: 100%;
   fill: colors.$neutral-2;
 }
