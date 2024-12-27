@@ -2,12 +2,12 @@ import { TopNavbar } from "./features/navigation/top-navbar/top-navbar";
 import { useGetAllTasksQuery } from "./getTasks.generated";
 
 function App() {
-  const { data, loading } = useGetAllTasksQuery();
+  // const { data, loading } = useGetAllTasksQuery();
 
   return (
     <>
       <TopNavbar />
-      {loading ? (
+      {/* {loading ? (
         <span>loading...</span>
       ) : (
         <ul>
@@ -18,7 +18,7 @@ function App() {
             </li>
           ))}
         </ul>
-      )}
+      )} */}
     </>
   );
 }
