@@ -1,12 +1,14 @@
 @use "../../../shared/styles/variables/colors";
 .container {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: auto 1fr min-content;
   align-items: center;
+  gap: 12px;
   background-color: colors.$neutral-4;
   color: inherit;
   padding: 16px 24px;
-  gap: 12px;
+  height: 64px;
 }
 .inputContainer {
   width: min-content;
