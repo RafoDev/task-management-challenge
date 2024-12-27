@@ -1,3 +1,4 @@
+import { Sidebar } from "./features/navigation/sidebar/sidebar";
 import { TopNavbar } from "./features/navigation/top-navbar/top-navbar";
 import { useGetAllTasksQuery } from "./getTasks.generated";
 
@@ -7,6 +8,7 @@ function App() {
   return (
     <>
       <TopNavbar />
+      <Sidebar />
       {/* {loading ? (
         <span>loading...</span>
       ) : (

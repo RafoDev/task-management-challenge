@@ -1,0 +1,21 @@
+@use "/src/shared/styles/variables/colors";
+
+.container {
+  width: 310px;
+  background-color: colors.$neutral-4;
+  display: flex;
+  flex-direction: column;
+}
+
+.logoContainer {
+  margin: 36px auto 44px auto;
+}
+
+.optionList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
