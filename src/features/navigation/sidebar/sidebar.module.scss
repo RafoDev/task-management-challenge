@@ -1,10 +1,26 @@
 @use "/src/shared/styles/variables/colors";
 
 .container {
+  position: relative;
+  left: -100%;
   width: 310px;
+  height: 100%;
   background-color: colors.$neutral-4;
   display: flex;
   flex-direction: column;
+  transition: left 0.25s;
+  &Show {
+    left: 0%;
+  }
+}
+
+.overlay {
+  top: 0;
+  left: 50%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: red;
 }
 
 .logoContainer {
@@ -24,6 +40,20 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+.toggleButtonContent {
+  font-size: 1.5rem;
+}
+
+.toggleButton {
+  z-index: 6000;
+  position: absolute;
+  bottom: 1rem;
+  right: -3.5rem;
+  border-radius: 100%;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
 }
 
 @media (min-width: 768px) {

@@ -1,26 +1,15 @@
-import { Sidebar } from "./features/navigation/sidebar/sidebar";
-import { TopNavbar } from "./features/navigation/top-navbar/top-navbar";
-import { useGetAllTasksQuery } from "./getTasks.generated";
+import { Route, Routes } from "react-router-dom";
+import { Dashboard } from "./components/layouts/dashboard/dashboard";
+import { Tasks } from "./features/tasks/tasks";
 
 function App() {
-  // const { data, loading } = useGetAllTasksQuery();
-
   return (
     <>
-      <TopNavbar />
-      <Sidebar />
-      {/* {loading ? (
-        <span>loading...</span>
-      ) : (
-        <ul>
-          {data?.tasks.map((task) => (
-            <li key={task.id}>
-              <h4>{task.name}</h4>
-              <span>{task.status}</span>
-            </li>
-          ))}
-        </ul>
-      )} */}
+      <Routes>
+        <Route path="/" element={<Dashboard />}>
+          <Route path="list" element={<Tasks />} />
+        </Route>
+      </Routes>
     </>
   );
 }

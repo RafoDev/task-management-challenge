@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Option, OptionType } from "./components/option/option";
 import styles from "./sidebar.module.scss";
 import DashboardIcon from "/src/assets/icons/dashboard.svg?react";
@@ -10,8 +11,15 @@ const options: OptionType[] = [
 ];
 
 export const Sidebar = () => {
+  const [showSidebar, setShowSidebar] = useState(true);
+
   return (
-    <aside className={styles.container}>
+    <aside
+      className={`${styles.container} ${
+        showSidebar ? styles.containerShow : ""
+      }`}
+    >
+      {/* <div className={styles.overlay}></div> */}
       <figure className={styles.logoContainer}>
         <img src={RavnLogo} alt={"Ravn Logo"} className={styles.logo} />
       </figure>
@@ -22,6 +30,14 @@ export const Sidebar = () => {
           ))}
         </ul>
       </nav>
+      <button
+        className={styles.toggleButton}
+        onClick={() => {
+          setShowSidebar(!showSidebar);
+        }}
+      >
+        <span className={styles.toggleButtonContent}>+</span>
+      </button>
     </aside>
   );
 };
