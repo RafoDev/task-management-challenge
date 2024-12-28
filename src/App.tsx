@@ -5,12 +5,7 @@ import { TaskGrid, TaskList } from "./features/tasks";
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Dashboard />}>
-          <Route index element={<TaskGrid />} />
-          <Route path="/list" element={<TaskList />} />
-        </Route>
-      </Routes>
+      <Dashboard />
     </>
   );
 }

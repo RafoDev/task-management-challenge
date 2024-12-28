@@ -1,7 +1,7 @@
-import { Outlet } from "react-router-dom";
 import { Sidebar } from "../../../features/navigation/sidebar/sidebar";
 import { TopNavbar } from "../../../features/navigation/searchbar/searchbar";
 import styles from "./dashboard-layout.module.scss";
+import { Tasks } from "../../../features/tasks/tasks";
 
 export const Dashboard = () => {
   return (
@@ -13,7 +13,7 @@ export const Dashboard = () => {
         <TopNavbar />
       </header>
       <main className={styles.content}>
-        <Outlet />
+        <Tasks />
       </main>
     </section>
   );
