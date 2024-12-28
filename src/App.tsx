@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import { Dashboard } from "./components/layouts/dashboard/dashboard-layout";
-import { Tasks } from "./features/tasks/tasks";
+import { TaskGrid, TaskList } from "./features/tasks";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route element={<Dashboard />}>
-          <Route path="dashboard" element={<Tasks />} />
-          <Route path="list" element={<Tasks />} />
+        <Route path="/" element={<Dashboard />}>
+          <Route index element={<TaskGrid />} />
+          <Route path="/list" element={<TaskList />} />
         </Route>
       </Routes>
     </>

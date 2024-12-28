@@ -6,8 +6,8 @@ import TaskIcon from "/src/assets/icons/list.svg?react";
 import RavnLogo from "/src/assets/images/ravn.png";
 
 const options: OptionType[] = [
-  { icon: DashboardIcon, label: "DASHBOARD", to: "" },
-  { icon: TaskIcon, label: "MY TASKS", to: "" },
+  { icon: DashboardIcon, label: "DASHBOARD", to: "/" },
+  { icon: TaskIcon, label: "MY TASKS", to: "/list" },
 ];
 
 export const Sidebar = () => {
@@ -19,16 +19,13 @@ export const Sidebar = () => {
         showSidebar ? styles.containerShow : ""
       }`}
     >
-      {/* <div className={styles.overlay}></div> */}
       <figure className={styles.logoContainer}>
         <img src={RavnLogo} alt={"Ravn Logo"} className={styles.logo} />
       </figure>
-      <nav>
-        <ul className={styles.optionList}>
-          {options.map((option) => (
-            <Option key={option.label} {...option} />
-          ))}
-        </ul>
+      <nav className={styles.optionList}>
+        {options.map((option) => (
+          <Option key={option.label} {...option} />
+        ))}
       </nav>
       <button
         className={styles.toggleButton}

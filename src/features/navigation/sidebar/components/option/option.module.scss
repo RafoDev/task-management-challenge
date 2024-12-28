@@ -1,10 +1,15 @@
 @use "/src/shared/styles/variables/colors";
 
 .container {
+  text-decoration: none;
   display: flex;
   gap: 1rem;
   padding: 1rem;
   color: colors.$neutral-2;
+
+  background: linear-gradient(to right, transparent, transparent);
+  border-right: 2px solid transparent;
+  transition: background 0.25s, border-right 0.25s;
   &Active {
     background: linear-gradient(to right, #ba252500, #d24d4d10);
     border-right: 2px solid colors.$primary-4;

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styles from "./option.module.scss";
 
 export type OptionType = {
@@ -8,11 +9,18 @@ export type OptionType = {
 
 export const Option = (props: OptionType) => {
   return (
-    <li className={`${styles.container}`}>
+    <NavLink
+      to={props.to}
+      className={({ isActive }) =>
+        isActive
+          ? `${styles.container} ${styles.containerActive}`
+          : `${styles.container}`
+      }
+    >
       <figure className={styles.iconContainer}>
         <props.icon className={styles.icon} />
       </figure>
       <span className={`body-m-bold ${styles.label}`}>{props.label}</span>
-    </li>
+    </NavLink>
   );
 };
