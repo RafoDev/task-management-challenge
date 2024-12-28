@@ -2,7 +2,7 @@
 
 .container {
   position: relative;
-  left: -100%;
+  left: 0%;
   width: 310px;
   height: 100%;
   background-color: colors.$neutral-4;
@@ -10,7 +10,7 @@
   flex-direction: column;
   transition: left 0.25s;
   &Show {
-    left: 0%;
+    left: -100%;
   }
 }
 
@@ -57,6 +57,11 @@
   .container {
     width: 232px;
     border-radius: 24px;
+    left: 0%;
+
+    &Show {
+      left: 0%;
+    }
   }
 
   .logoContainer {

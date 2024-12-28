@@ -11,12 +11,12 @@ const options: OptionType[] = [
 ];
 
 export const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [hideSidebar, setHideSidebar] = useState(true);
 
   return (
     <aside
       className={`${styles.container} ${
-        showSidebar ? styles.containerShow : ""
+        hideSidebar ? styles.containerShow : ""
       }`}
     >
       <figure className={styles.logoContainer}>
@@ -30,7 +30,7 @@ export const Sidebar = () => {
       <button
         className={styles.toggleButton}
         onClick={() => {
-          setShowSidebar(!showSidebar);
+          setHideSidebar(!hideSidebar);
         }}
       >
         <span className={styles.toggleButtonContent}>+</span>
