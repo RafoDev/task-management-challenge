@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../../../features/navigation/sidebar/sidebar";
 import { TopNavbar } from "../../../features/navigation/top-navbar/top-navbar";
-import styles from "./dashboard.module.scss";
+import styles from "./dashboard-layout.module.scss";
 
 export const Dashboard = () => {
   return (

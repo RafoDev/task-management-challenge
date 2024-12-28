@@ -8,3 +8,8 @@ body {
   color: colors.$neutral-1;
   background-color: colors.$neutral-5;
 }
+
+.root {
+  background-color: red;
+  min-height: 100vh;
+}
