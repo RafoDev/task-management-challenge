@@ -1,7 +1,7 @@
 import SearchIcon from "/src/assets/icons/search.svg?react";
 import NotificationIcon from "/src/assets/icons/notification.svg?react";
 import CleanIcon from "/src/assets/icons/clean.svg?react";
-import styles from "./top-navbar.module.scss";
+import styles from "./searchbar.module.scss";
 import { Profile } from "./components";
 import { useState, useEffect, useRef } from "react";
 
