@@ -87,6 +87,7 @@
 
 @media (min-width: 768px) {
   .container {
+    border-radius: 1rem;
     grid-template-columns: 1fr repeat(2, auto);
     grid-template-areas: "input notification profile";
     gap: 24px;
