@@ -33,14 +33,16 @@ export const TaskCard = (props: TaskCardType) => {
       </div>
       <div className={styles.content}>
         <span className={`${styles.points} body-m-bold`}>{points} Pts</span>
-        <span className={styles.timer}>
+        <div className={styles.timer}>
           <TimerIcon className={styles.timerIcon} />
-          <span className={styles.dueDate}>{formattedDueDate}</span>
-        </span>
+          <span className={`${styles.dueDate} body-m-bold`}>
+            {formattedDueDate}
+          </span>
+        </div>
       </div>
       <ul className={styles.tags}>
         {props.tags.map((tag) => (
-          <li key={tag} className={styles.tag}>
+          <li key={tag} className={`${styles.tag} body-m-bold`}>
             {tag}
           </li>
         ))}
@@ -54,10 +56,12 @@ export const TaskCard = (props: TaskCardType) => {
         <div className={styles.reactions}>
           <AttachIcon className={styles.reactionIcon} />
           <div className={styles.connection}>
-            5 <ConnectionsIcon className={styles.reactionIcon} />
+            <span className="body-m-bold">5</span>
+            <ConnectionsIcon className={styles.reactionIcon} />
           </div>
           <div className={styles.comments}>
-            5 <CommentsIcon className={styles.reactionIcon} />
+            <span className="body-m-bold">5</span>
+            <CommentsIcon className={styles.reactionIcon} />
           </div>
         </div>
       </div>
