@@ -1,11 +1,18 @@
-import { GetAllTasksQuery } from "../getTasks.generated";
+import { TaskCard } from "../components/task-card/task-card";
+import { GetTasksQuery } from "../getTasks.generated";
 
 type KanbanViewType = {
-  tasks: GetAllTasksQuery["tasks"];
+  tasks: GetTasksQuery["tasks"];
   loading: boolean;
 };
 
 export const KanbanView = ({ tasks, loading }: KanbanViewType) => {
   if (loading) return <span>Loading...</span>;
-  return <span>{JSON.stringify(tasks)}</span>;
+  return (
+    <div>
+      {tasks.map((task) => (
+        <TaskCard {...task} />
+      ))}
+    </div>
+  );
 };
