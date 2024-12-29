@@ -7,6 +7,7 @@ import AttachIcon from "/src/assets/icons/attach.svg?react";
 import ConnectionsIcon from "/src/assets/icons/connections.svg?react";
 import CommentsIcon from "/src/assets/icons/comments.svg?react";
 import { PointEstimate } from "../../../../types";
+import { formatDate } from "../../../../shared/services/format-date";
 
 type TaskCardType = GetTasksQuery["tasks"][number];
 
@@ -20,6 +21,8 @@ export const PointEstimateValues: Record<PointEstimate, number> = {
 
 export const TaskCard = (props: TaskCardType) => {
   const points = PointEstimateValues[props.pointEstimate];
+  const formattedDueDate = formatDate(props.dueDate);
+
   return (
     <article className={styles.container}>
       <div className={styles.header}>
@@ -32,7 +35,7 @@ export const TaskCard = (props: TaskCardType) => {
         <span className={`${styles.points} body-m-bold`}>{points} Pts</span>
         <span className={styles.timer}>
           <TimerIcon className={styles.timerIcon} />
-          <span className={styles.dueDate}>{props.dueDate}</span>
+          <span className={styles.dueDate}>{formattedDueDate}</span>
         </span>
       </div>
       <ul className={styles.tags}>
