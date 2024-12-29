@@ -7,14 +7,24 @@ import styles from "./topbar.module.scss";
 export const Topbar = () => {
   return (
     <nav className={styles.container}>
-      <NavLink to="/" className={styles.link}>
-        <figure className={styles.iconContainer}>
-          <GridIcon className={styles.icon} />
-        </figure>
-      </NavLink>
-      <NavLink to="/list" className={styles.link}>
+      <NavLink
+        to="/list"
+        className={({ isActive }) =>
+          isActive ? `${styles.link} ${styles.linkActive}` : `${styles.link}`
+        }
+      >
         <figure className={styles.iconContainer}>
           <ListIcon className={styles.icon} />
+        </figure>
+      </NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive ? `${styles.link} ${styles.linkActive}` : `${styles.link}`
+        }
+      >
+        <figure className={styles.iconContainer}>
+          <GridIcon className={styles.icon} />
         </figure>
       </NavLink>
     </nav>
