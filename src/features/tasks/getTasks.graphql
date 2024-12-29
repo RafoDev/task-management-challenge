@@ -1,4 +1,4 @@
-query GetAllTasks {
+query GetTasks {
   tasks(input: {}) {
     id
     name
@@ -6,6 +6,7 @@ query GetAllTasks {
     dueDate
     pointEstimate
     tags
+    position
     assignee {
       id
       fullName

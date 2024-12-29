@@ -1,5 +1,11 @@
-import { Task } from "../../../types";
+import { GetAllTasksQuery } from "../getTasks.generated";
 
-export const KanbanView = (tasks: Task[]) => {
-  return <span>KanbanView</span>;
+type KanbanViewType = {
+  tasks: GetAllTasksQuery["tasks"];
+  loading: boolean;
+};
+
+export const KanbanView = ({ tasks, loading }: KanbanViewType) => {
+  if (loading) return <span>Loading...</span>;
+  return <span>{JSON.stringify(tasks)}</span>;
 };
