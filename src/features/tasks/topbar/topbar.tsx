@@ -16,7 +16,7 @@ export const Topbar = () => {
         <figure className={styles.iconContainer}>
           <ListIcon className={styles.icon} />
         </figure>
-        <span className={`${styles.label} body-s-regular`}>Dashboard</span>
+        <span className={`${styles.label} body-s-regular`}>Task</span>
       </NavLink>
       <NavLink
         to="/tasks/kanban"
@@ -27,7 +27,7 @@ export const Topbar = () => {
         <figure className={styles.iconContainer}>
           <GridIcon className={styles.icon} />
         </figure>
-        <span className={`${styles.label} body-s-regular`}>Task</span>
+        <span className={`${styles.label} body-s-regular`}>Dashboard</span>
       </NavLink>
     </nav>
   );
