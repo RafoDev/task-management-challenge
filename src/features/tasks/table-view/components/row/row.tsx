@@ -4,7 +4,7 @@ import CommentsIcon from "/src/assets/icons/comments.svg?react";
 import { GetTasksQuery } from "../../../getTasks.generated";
 import { formatDate } from "../../../utils/format-date";
 import { Tag } from "../../../../../components/ui/tag/tag";
-import { Avatar } from "../../../../../components/ui";
+import { Avatar, Tags } from "../../../../../components/ui";
 import { formatEstimatedPoints } from "../../../utils";
 
 type RowType = GetTasksQuery["tasks"][number];
@@ -35,13 +35,14 @@ export const Row = (props: RowType) => {
         </figure> */}
       </header>
 
-      <div className={styles.tags}>
+      {/* <div className={styles.tags}>
         {props.tags.map((tag) => (
           <Tag key={tag} style={tag}>
             <span className={"body-m-bold"}>{tag}</span>
           </Tag>
         ))}
-      </div>
+      </div> */}
+      <Tags tags={props.tags} className={styles.tags} />
 
       <span className={`${styles.points} body-m-bold`}>{points} Points</span>
 
