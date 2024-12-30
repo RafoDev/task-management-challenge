@@ -10,6 +10,7 @@ export const Profile = () => {
       id={profile?.id || ""}
       fullName={profile?.fullName || ""}
       avatar={profile?.avatar}
+      size="m"
     />
   );
 };

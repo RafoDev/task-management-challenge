@@ -56,6 +56,7 @@ export const TaskCard = (props: TaskCardType) => {
           id={props.assignee?.id || ""}
           avatar={props.assignee?.avatar}
           fullName={props.assignee?.fullName || ""}
+          size="s"
         />
         <div className={styles.reactions}>
           <AttachIcon className={styles.reactionIcon} />
