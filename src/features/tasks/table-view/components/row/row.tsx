@@ -6,7 +6,7 @@ import ConnectionsIcon from "/src/assets/icons/connections.svg?react";
 import CommentsIcon from "/src/assets/icons/comments.svg?react";
 import { GetTasksQuery } from "../../../getTasks.generated";
 import { PointEstimate } from "../../../../../types";
-import { formatDate } from "../../../../../shared/services/format-date";
+import { formatDate } from "../../../utils/format-date";
 import { Tag } from "../../../../../components/ui/tag/tag";
 import { Avatar } from "../../../../../components/ui";
 
