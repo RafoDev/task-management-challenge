@@ -2,13 +2,13 @@
   display: flex;
   align-self: center;
   overflow: hidden;
+  gap: 8px;
 }
 
 .measurementContainer {
   position: absolute;
   visibility: hidden;
   display: flex;
-  gap: 8px;
 }
 
 .tagMeasurementContainer {

@@ -93,7 +93,7 @@ export const Tags = ({ tags, className }: TagsType) => {
           </Tag>
         ))}
         {hiddenCount > 0 && (
-          <Tag style="neutral">
+          <Tag style="placeholder">
             <span className="body-m-bold">+{hiddenCount}</span>
           </Tag>
         )}

@@ -15,7 +15,8 @@
 }
 
 .style-RAILS,
-.style-neutral {
+.style-neutral,
+.style-placeholder {
   @include tag-styles(#94979a10, colors.$neutral-1);
 }
 .style-IOS {
@@ -30,4 +31,8 @@
 .style-NODE_JS,
 .style-urgent {
   @include tag-styles(#da584b10, colors.$primary-1);
+}
+
+.style-placeholder {
+  padding: 8px;
 }
