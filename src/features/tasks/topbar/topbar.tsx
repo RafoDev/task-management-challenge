@@ -8,7 +8,7 @@ export const Topbar = () => {
   return (
     <nav className={styles.container}>
       <NavLink
-        to="/tasks/kanban"
+        to="/tasks/list"
         className={({ isActive }) =>
           isActive ? `${styles.link} ${styles.linkActive}` : `${styles.link}`
         }
@@ -19,7 +19,7 @@ export const Topbar = () => {
         <span className={`${styles.label} body-s-regular`}>Dashboard</span>
       </NavLink>
       <NavLink
-        to="/tasks/list"
+        to="/tasks/kanban"
         className={({ isActive }) =>
           isActive ? `${styles.link} ${styles.linkActive}` : `${styles.link}`
         }

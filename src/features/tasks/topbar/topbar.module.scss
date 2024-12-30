@@ -29,13 +29,17 @@
 }
 
 @media (min-width: 768px) {
+  .label {
+    display: none;
+  }
   .container {
-    display: flex;
+    background-color: transparent;
   }
   .iconContainer {
+    display: block;
   }
   .link {
-    box-sizing: border-box;
+    flex-grow: 0;
     width: 40px;
     height: 40px;
     padding: 8px;
@@ -46,14 +50,5 @@
       border: 1px solid colors.$primary-4;
       color: colors.$primary-4;
     }
-  }
-  .iconContainer {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .icon {
-    width: 100%;
-    height: 100%;
   }
 }
