@@ -5,7 +5,7 @@ import styles from "./searchbar.module.scss";
 import { Profile } from "./components";
 import { useState, useEffect, useRef } from "react";
 
-export const TopNavbar = () => {
+export const SearchBar = () => {
   const [showInput, setShowInput] = useState(false);
   const [animateInput, setAnimateInput] = useState(false);
   const [inputValue, setInputValue] = useState("");

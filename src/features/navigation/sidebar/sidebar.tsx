@@ -6,8 +6,8 @@ import TaskIcon from "/src/assets/icons/list.svg?react";
 import RavnLogo from "/src/assets/images/ravn.png";
 
 const options: OptionType[] = [
-  { icon: DashboardIcon, label: "DASHBOARD", to: "/" },
-  { icon: TaskIcon, label: "MY TASKS", to: "/list" },
+  { icon: DashboardIcon, label: "DASHBOARD", to: "/tasks/kanban" },
+  { icon: TaskIcon, label: "MY TASKS", to: "/tasks/list" },
 ];
 
 export const Sidebar = () => {

@@ -1,9 +1,10 @@
+import { AppProvider } from "./app/router";
 import { Dashboard } from "./components/layouts/dashboard/dashboard-layout";
 
 function App() {
   return (
     <>
-      <Dashboard />
+      <AppProvider />
     </>
   );
 }

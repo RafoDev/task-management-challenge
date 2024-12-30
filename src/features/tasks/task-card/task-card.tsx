@@ -1,13 +1,13 @@
-import { Avatar } from "../../../../components/ui";
-import { GetTasksQuery } from "../../getTasks.generated";
 import styles from "./task-card.module.scss";
 import ThreeDotsIcon from "/src/assets/icons/three-dots.svg?react";
 import TimerIcon from "/src/assets/icons/timer.svg?react";
 import AttachIcon from "/src/assets/icons/attach.svg?react";
 import ConnectionsIcon from "/src/assets/icons/connections.svg?react";
 import CommentsIcon from "/src/assets/icons/comments.svg?react";
-import { PointEstimate } from "../../../../types";
-import { formatDate } from "../../../../shared/services/format-date";
+import { GetTasksQuery } from "../getTasks.generated";
+import { PointEstimate } from "../../../types";
+import { formatDate } from "../../../shared/services/format-date";
+import { Avatar } from "../../../components/ui";
 
 type TaskCardType = GetTasksQuery["tasks"][number];
 

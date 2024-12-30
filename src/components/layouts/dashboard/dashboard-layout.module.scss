@@ -9,29 +9,19 @@
   height: 100vh;
   position: absolute;
 }
-.header {
-}
-.content {
-}
 
 @media (min-width: 768px) {
   .container {
     box-sizing: border-box;
     padding: 2rem;
     grid-template-columns: min-content 1fr;
-    grid-template-rows: min-content 1fr;
-    grid-template-areas:
-      "side header"
-      "side content";
+    grid-template-areas: "side content";
     gap: 2rem;
   }
   .sidebar {
     height: 100%;
     position: relative;
     grid-area: side;
-  }
-  .header {
-    grid-area: header;
   }
   .content {
     grid-area: content;
