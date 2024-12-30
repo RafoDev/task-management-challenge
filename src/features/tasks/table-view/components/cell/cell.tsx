@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Status } from "../../../../../types";
 import { useGetTasksQuery } from "../../../getTasks.generated";
 import { Row } from "../row/row";
@@ -15,13 +16,19 @@ export const Cell = ({ title, status }: CellType) => {
   const { data, loading } = useGetTasksQuery({
     variables: { status: Status[status] },
   });
+
+  const [open, setOpen] = useState(false);
+
   if (loading) return <span>loading...</span>;
 
   return (
-    <section className={styles.container}>
+    <section
+      className={`${styles.container} ${open ? styles.containerOpen : ""}`}
+      onClick={() => setOpen(!open)}
+    >
       <header className={styles.header}>
         <div className={styles.titleContainer}>
-          <figure className={styles.iconContainer}>
+          <figure className={`${styles.iconContainer} ${styles.arrowDown}`}>
             <ArrowDownIcon className={styles.icon} />
           </figure>
 

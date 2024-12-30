@@ -5,13 +5,30 @@
   background-color: colors.$neutral-4;
   border-radius: 4px;
   border: 1px solid colors.$neutral-3;
-  overflow: auto;
+  overflow-y: hidden;
+  &Open {
+    & .arrowDown {
+      transform: rotate(0deg);
+    }
+    & .taskContainer {
+      height: 0;
+    }
+  }
+}
+.arrowDown {
+  transform: rotate(180deg);
+  transition: transform 0.25s;
 }
 .header {
+  cursor: pointer;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background-color 0.25s;
+  &:hover {
+    background-color: colors.$neutral-3;
+  }
 }
 .titleContainer {
   display: flex;
@@ -33,9 +50,6 @@
   padding: 5px;
   border-radius: 100%;
   cursor: pointer;
-  &:hover {
-    background-color: colors.$neutral-3;
-  }
 }
 .icon {
   width: 100%;
@@ -51,4 +65,5 @@
   grid-template-columns:
     minmax(500px, 45%) minmax(168px, 15%) minmax(140px, 13%)
     minmax(171px, 15%) minmax(129px, 12%);
+  transition: height 0.25s;
 }
