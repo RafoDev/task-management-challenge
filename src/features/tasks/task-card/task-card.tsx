@@ -8,6 +8,7 @@ import { GetTasksQuery } from "../getTasks.generated";
 import { PointEstimate } from "../../../types";
 import { formatDate } from "../../../shared/services/format-date";
 import { Avatar } from "../../../components/ui";
+import { Tag } from "../../../components/ui/tag/tag";
 
 type TaskCardType = GetTasksQuery["tasks"][number];
 
@@ -25,29 +26,32 @@ export const TaskCard = (props: TaskCardType) => {
 
   return (
     <article className={styles.container}>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <h4 className={`${styles.name} body-l-bold`}>{props.name}</h4>
         <figure className={styles.options}>
           <ThreeDotsIcon className={styles.optionsIcon} />
         </figure>
-      </div>
+      </header>
+
       <div className={styles.content}>
         <span className={`${styles.points} body-m-bold`}>{points} Pts</span>
-        <div className={styles.timer}>
+        <Tag style={"neutral"}>
           <TimerIcon className={styles.timerIcon} />
           <span className={`${styles.dueDate} body-m-bold`}>
             {formattedDueDate}
           </span>
-        </div>
+        </Tag>
       </div>
-      <ul className={styles.tags}>
+
+      <div className={styles.tags}>
         {props.tags.map((tag) => (
-          <li key={tag} className={`${styles.tag} body-m-bold`}>
-            {tag}
-          </li>
+          <Tag key={tag} style={tag}>
+            <span className={"body-m-bold"}>{tag}</span>
+          </Tag>
         ))}
-      </ul>
-      <div className={styles.footer}>
+      </div>
+
+      <footer className={styles.footer}>
         <Avatar
           id={props.assignee?.id || ""}
           avatar={props.assignee?.avatar}
@@ -64,7 +68,7 @@ export const TaskCard = (props: TaskCardType) => {
             <CommentsIcon className={styles.reactionIcon} />
           </div>
         </div>
-      </div>
+      </footer>
     </article>
   );
 };
