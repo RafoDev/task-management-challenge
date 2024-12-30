@@ -1,16 +1,18 @@
 .container {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(3, minmax(348px, 500px));
   gap: 2rem;
   width: 100vw;
   height: calc(100vh - 112px);
   overflow-x: auto;
+  padding: 20px 1rem 1rem 1rem;
 }
 .column {
 }
 .title {
   margin: 0;
-  margin-bottom: 8px;
+  margin-bottom: 1rem;
 }
 .taskContainer {
   display: flex;
@@ -23,6 +25,7 @@
     width: auto;
     height: calc(100vh - 112px);
     overflow-x: initial;
+    padding: 0;
   }
   .column {
   }

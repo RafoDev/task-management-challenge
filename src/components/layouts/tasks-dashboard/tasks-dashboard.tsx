@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { Topbar } from "../../../features/tasks/components/topbar/topbar";
 
+import styles from "./tasks-dashboard.module.scss";
+
 export const TasksDashboard = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <Topbar />
-      <div>
+      <div className={styles.content}>
         <Outlet />
       </div>
     </div>
