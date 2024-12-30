@@ -1,5 +1,5 @@
-query GetTasks {
-  tasks(input: {}) {
+query GetTasks($status: Status!) {
+  tasks(input: { status: $status }) {
     id
     name
     status
