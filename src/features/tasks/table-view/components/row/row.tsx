@@ -1,47 +1,39 @@
 import styles from "./row.module.scss";
-import ThreeDotsIcon from "/src/assets/icons/three-dots.svg?react";
-import TimerIcon from "/src/assets/icons/timer.svg?react";
-import AttachIcon from "/src/assets/icons/attach.svg?react";
 import ConnectionsIcon from "/src/assets/icons/connections.svg?react";
 import CommentsIcon from "/src/assets/icons/comments.svg?react";
 import { GetTasksQuery } from "../../../getTasks.generated";
-import { PointEstimate } from "../../../../../types";
 import { formatDate } from "../../../utils/format-date";
 import { Tag } from "../../../../../components/ui/tag/tag";
 import { Avatar } from "../../../../../components/ui";
+import { formatEstimatedPoints } from "../../../utils";
 
-type TaskCardType = GetTasksQuery["tasks"][number];
+type RowType = GetTasksQuery["tasks"][number];
 
-export const PointEstimateValues: Record<PointEstimate, number> = {
-  [PointEstimate.Eight]: 8,
-  [PointEstimate.Four]: 4,
-  [PointEstimate.One]: 1,
-  [PointEstimate.Two]: 2,
-  [PointEstimate.Zero]: 0,
-};
-
-export const Row = (props: TaskCardType) => {
-  const points = PointEstimateValues[props.pointEstimate];
+export const Row = (props: RowType) => {
+  const points = formatEstimatedPoints(props.pointEstimate);
   const formattedDueDate = formatDate(props.dueDate);
 
   return (
     <article className={styles.container}>
       <header className={styles.header}>
-        <h4 className={`${styles.name} body-l-bold`}>{props.name}</h4>
-        <figure className={styles.options}>
+        <h4 className={`${styles.name} body-l-bold`}>
+          {props.position} {props.name}
+        </h4>
+        <div className={styles.reactions}>
+          <div className={styles.connection}>
+            <span className="body-m-bold">5</span>
+            <ConnectionsIcon className={styles.reactionIcon} />
+          </div>
+          <div className={styles.comments}>
+            <span className="body-m-bold">5</span>
+            <CommentsIcon className={styles.reactionIcon} />
+          </div>
+          <span>Details</span>
+        </div>
+        {/* <figure className={styles.options}>
           <ThreeDotsIcon className={styles.optionsIcon} />
-        </figure>
+        </figure> */}
       </header>
-
-      <div className={styles.content}>
-        <span className={`${styles.points} body-m-bold`}>{points} Pts</span>
-        <Tag style={"neutral"}>
-          <TimerIcon className={styles.timerIcon} />
-          <span className={`${styles.dueDate} body-m-bold`}>
-            {formattedDueDate}
-          </span>
-        </Tag>
-      </div>
 
       <div className={styles.tags}>
         {props.tags.map((tag) => (
@@ -51,25 +43,27 @@ export const Row = (props: TaskCardType) => {
         ))}
       </div>
 
-      <footer className={styles.footer}>
+      <span className={`${styles.points} body-m-bold`}>{points} Points</span>
+
+      <article className={styles.assignee}>
         <Avatar
           id={props.assignee?.id || ""}
           avatar={props.assignee?.avatar}
           fullName={props.assignee?.fullName || ""}
           size="s"
         />
-        <div className={styles.reactions}>
-          <AttachIcon className={styles.reactionIcon} />
-          <div className={styles.connection}>
-            <span className="body-m-bold">5</span>
-            <ConnectionsIcon className={styles.reactionIcon} />
-          </div>
-          <div className={styles.comments}>
-            <span className="body-m-bold">5</span>
-            <CommentsIcon className={styles.reactionIcon} />
-          </div>
-        </div>
-      </footer>
+        <span className={styles.assigneeName}>{props.assignee?.fullName}</span>
+      </article>
+
+      {/* <div className={styles.content}>
+        <Tag style={"neutral"}>
+          <TimerIcon className={styles.timerIcon} />
+        </Tag>
+      </div> */}
+
+      <span className={`${styles.dueDate} body-m-regular`}>
+        {formattedDueDate}
+      </span>
     </article>
   );
 };

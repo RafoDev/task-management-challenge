@@ -42,11 +42,11 @@ export const Cell = ({ title, status }: CellType) => {
         </section>
       </header>
 
-      {/* <section className={styles.taskContainer}>
+      <section className={styles.taskContainer}>
         {data?.tasks.map((task) => (
           <Row key={task.id} {...task} />
         ))}
-      </section> */}
+      </section>
     </section>
   );
 };
