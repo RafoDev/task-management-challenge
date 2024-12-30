@@ -1,6 +1,6 @@
 import { Status } from "../../../../../types";
 import { useGetTasksQuery } from "../../../getTasks.generated";
-import { TaskCard } from "../../../task-card/task-card";
+import { Row } from "../row/row";
 import styles from "./cell.module.scss";
 
 type CellType = {
@@ -21,8 +21,8 @@ export const Cell = ({ title, status }: CellType) => {
       </h2>
       <section className={styles.taskContainer}>
         {data?.tasks.map((task) => (
-          <TaskCard key={task.id} {...task} />
-        ))}
+          <Row key={task.id} {...task} />
+        ))} 
       </section>
     </section>
   );

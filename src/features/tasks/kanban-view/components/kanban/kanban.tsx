@@ -1,6 +1,6 @@
 import { Status } from "../../../../../types";
 import { useGetTasksQuery } from "../../../getTasks.generated";
-import { TaskCard } from "../../../task-card/task-card";
+import { TaskCard } from "../task-card/task-card";
 import styles from "./kanban.module.scss";
 
 type KanbanType = {

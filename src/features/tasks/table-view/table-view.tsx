@@ -1,6 +1,6 @@
 import { Status } from "../../../types";
 import { Cell } from "./components/cell/cell";
-import styles from "./kanban-view.module.scss";
+import styles from "./table-view.module.scss";
 
 const cells: { title: string; status: keyof typeof Status }[] = [
   {
