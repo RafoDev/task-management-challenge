@@ -5,23 +5,14 @@ import AttachIcon from "/src/assets/icons/attach.svg?react";
 import ConnectionsIcon from "/src/assets/icons/connections.svg?react";
 import CommentsIcon from "/src/assets/icons/comments.svg?react";
 import { GetTasksQuery } from "../../../getTasks.generated";
-import { PointEstimate } from "../../../../../types";
-import { formatDate } from "../../../utils/format-date";
 import { Avatar } from "../../../../../components/ui";
 import { Tag } from "../../../../../components/ui/tag/tag";
+import { formatDate, formatEstimatedPoints } from "../../../utils";
 
 type TaskCardType = GetTasksQuery["tasks"][number];
 
-export const PointEstimateValues: Record<PointEstimate, number> = {
-  [PointEstimate.Eight]: 8,
-  [PointEstimate.Four]: 4,
-  [PointEstimate.One]: 1,
-  [PointEstimate.Two]: 2,
-  [PointEstimate.Zero]: 0,
-};
-
 export const TaskCard = (props: TaskCardType) => {
-  const points = PointEstimateValues[props.pointEstimate];
+  const points = formatEstimatedPoints(props.pointEstimate);
   const formattedDueDate = formatDate(props.dueDate);
 
   return (
