@@ -1,7 +1,8 @@
 import { Status } from "../../../types";
+import { Cell } from "./components/cell/cell";
 import styles from "./kanban-view.module.scss";
 
-const kanbans: { title: string; status: keyof typeof Status }[] = [
+const cells: { title: string; status: keyof typeof Status }[] = [
   {
     title: "Working",
     status: "Todo",
@@ -16,11 +17,11 @@ const kanbans: { title: string; status: keyof typeof Status }[] = [
   },
 ];
 
-export const KanbanView = () => {
+export const TableView = () => {
   return (
     <div className={styles.container}>
-      {kanbans.map(({ title, status }) => (
-        <Kanban key={title} title={title} status={status} />
+      {cells.map(({ title, status }) => (
+        <Cell key={title} title={title} status={status} />
       ))}
     </div>
   );
