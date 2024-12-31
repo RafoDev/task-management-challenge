@@ -5,13 +5,15 @@
   background-color: colors.$neutral-4;
   border-radius: 4px;
   border: 1px solid colors.$neutral-3;
-  overflow-y: hidden;
+  min-width: 1108px;
+  overflow: hidden;
+
   &Open {
     & .arrowDown {
       transform: rotate(0deg);
     }
     & .taskContainer {
-      height: 0;
+      max-height: 0px;
     }
   }
 }
@@ -61,9 +63,7 @@
 }
 
 .taskContainer {
-  display: grid;
-  grid-template-columns:
-    minmax(500px, 45%) minmax(168px, 15%) minmax(140px, 13%)
-    minmax(171px, 15%) minmax(129px, 12%);
-  transition: height 0.25s;
+  height: auto;
+  max-height: 1000px;
+  transition: max-height 0.25s;
 }

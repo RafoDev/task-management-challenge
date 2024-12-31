@@ -1,0 +1,18 @@
+@use "/src/shared/styles/variables/colors";
+.container {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns:
+    minmax(500px, 45%) minmax(168px, 15%) minmax(140px, 13%)
+    minmax(171px, 15%) minmax(129px, 12%);
+  color: colors.$neutral-1;
+  background-color: colors.$neutral-4;
+  height: 56px;
+  border-radius: 4px;
+  border: 1px solid colors.$neutral-3;
+}
+
+.column {
+  padding: 1rem;
+  border: 1px solid colors.$neutral-3;
+}
