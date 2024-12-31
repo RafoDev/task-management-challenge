@@ -4,14 +4,19 @@
   display: flex;
   background-color: colors.$neutral-4;
 }
-.link {
+.button {
   padding: 12px;
   text-align: center;
   flex-grow: 1;
   box-sizing: border-box;
   text-decoration: none;
   color: colors.$neutral-2;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  width: 100%;
   transition: border 0.25s, color 0.25s;
+  cursor: pointer;
   &Active {
     border-bottom: 2px solid colors.$primary-4;
     color: colors.$primary-4;
@@ -38,7 +43,7 @@
   .iconContainer {
     display: block;
   }
-  .link {
+  .button {
     flex-grow: 0;
     width: 40px;
     height: 40px;
@@ -46,6 +51,7 @@
     color: colors.$neutral-1;
     border-radius: 8px;
     transition: border 0.25s, color 0.25s;
+    border: 1px solid transparent;
     &Active {
       border: 1px solid colors.$primary-4;
       color: colors.$primary-4;
