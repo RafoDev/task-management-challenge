@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateTaskSchema, CreateTaskValue } from "./create-task-schema";
 import { useCreateTaskMutation } from "../../../createTask.generated";
+import { toast } from "sonner";
 
 const pointsEstimate: { value: PointEstimate; label: string }[] = [
   { value: PointEstimate.One, label: "1 Points" },
@@ -26,7 +27,8 @@ const tags: { value: TaskTag; label: string }[] = [
 export const CreateTask = () => {
   const { closeDialog, isDialogOpen, openDialog } = useDialog();
   const { data: usersData, loading: usersLoading } = useGetUsersQuery();
-  const [createTask, { data, loading, error }] = useCreateTaskMutation();
+  const [createTask, { data: mutationData, loading, error }] =
+    useCreateTaskMutation();
 
   const {
     register,
@@ -52,7 +54,9 @@ export const CreateTask = () => {
         },
       },
     });
-    console.log(data);
+
+    if (mutationData) toast.success("Task has been created");
+
     closeDialog();
   };
 
