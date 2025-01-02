@@ -36,4 +36,4 @@ export const CreateTaskSchema = z.object({
   tags: z.array(TaskTagEnum).min(1, "At least one tag is required"),
 });
 
-export type CreateTaskInput = z.infer<typeof CreateTaskSchema>;
+export type CreateTaskValue = z.infer<typeof CreateTaskSchema>;
