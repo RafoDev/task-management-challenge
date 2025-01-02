@@ -2,6 +2,7 @@ import GridIcon from "/src/assets/icons/dashboard.svg?react";
 import ListIcon from "/src/assets/icons/list.svg?react";
 import styles from "./topbar.module.scss";
 import { useTaskLayout } from "../../../components/layouts/tasks-layout/tasks-layout";
+import { CreateTask } from "./components/create-task/create-task";
 
 export const Topbar = () => {
   const { toggleViewMode, viewMode } = useTaskLayout();
@@ -36,6 +37,7 @@ export const Topbar = () => {
         </figure>
         <span className={`${styles.label} body-s-regular`}>Dashboard</span>
       </button>
+      <CreateTask />
     </nav>
   );
 };
