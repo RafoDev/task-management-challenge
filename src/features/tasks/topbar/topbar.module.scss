@@ -23,9 +23,6 @@
   }
 }
 
-.createButton {
-}
-
 .iconContainer {
   display: none;
   margin: 0;
@@ -42,6 +39,8 @@
     display: none;
   }
   .container {
+    display: grid;
+    grid-template-columns: min-content min-content 1fr;
     background-color: transparent;
   }
   .iconContainer {
