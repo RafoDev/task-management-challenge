@@ -2,12 +2,14 @@ import styles from "./header.module.scss";
 
 export const Header = () => {
   return (
-    <div className={`${styles.container} body-m-regular`}>
-      <span className={styles.column}>Task Name</span>
-      <span className={styles.column}>Task Tags</span>
-      <span className={styles.column}>Estimate</span>
-      <span className={styles.column}>Task Assign Name</span>
-      <span className={styles.column}>Due Date</span>
-    </div>
+    <table className={styles.table}>
+      <tr className={styles.row}>
+        <th className={styles.cell}># Task Name</th>
+        <th className={styles.cell}>Task Tags</th>
+        <th className={styles.cell}>Estimate</th>
+        <th className={styles.cell}>Task Assign Name</th>
+        <th className={styles.cell}>Due Date</th>
+      </tr>
+    </table>
   );
 };
