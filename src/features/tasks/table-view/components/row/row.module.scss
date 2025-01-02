@@ -1,6 +1,7 @@
 @use "/src/shared/styles/variables/colors";
 
 .container {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns:
     minmax(500px, 45%) minmax(168px, 15%) minmax(140px, 13%)

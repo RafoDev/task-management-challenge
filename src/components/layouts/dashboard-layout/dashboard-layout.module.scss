@@ -6,10 +6,15 @@
   z-index: 5000;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 .sidebar {
   height: 100%;
   position: absolute;
+}
+.content {
+  height: 100%;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {

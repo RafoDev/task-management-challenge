@@ -25,6 +25,7 @@ export const TableView = () => {
       {cells.map(({ title, status }) => (
         <Cell key={title} title={title} status={status} />
       ))}
+
     </div>
   );
 };

@@ -4,13 +4,8 @@
   flex-direction: column;
   gap: 1rem;
   padding: 20px 1rem 1rem 1rem;
-
-  width: 100vw;
-  // min-width: 1108px;
-  // overflow: auto;
-  overflow: hidden;
-  overflow-x: auto;
-  height: calc(100vh - 112px);
+  height: 100%;
+  overflow: auto;
 }
 
 @media (min-width: 768px) {
