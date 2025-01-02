@@ -1,40 +1,75 @@
 import styles from "./tasks-layout.module.scss";
 import { Topbar } from "../../../features/tasks/topbar/topbar";
 import { SearchBar } from "../../../features/navigation/searchbar/searchbar";
-import { useEffect, useState } from "react";
-import { KanbanView } from "../../../features/tasks";
-import { TableView } from "../../../features/tasks/table-view/table-view";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { ViewModes } from "../../../features/tasks/types";
 import { Tasks } from "../../../features/tasks/tasks";
 
-type TasksDashboardType = {
+type TasksLayoutProps = {
   defaultViewMode?: ViewModes;
 };
 
-export const TasksLayout = ({
-  defaultViewMode = "kanban",
-}: TasksDashboardType) => {
+type TaskLayoutContextType = {
+  viewMode: ViewModes;
+  toggleViewMode(): void;
+};
+
+const TaskLayoutContext = createContext<TaskLayoutContextType | undefined>(
+  undefined
+);
+
+const TaskLayoutProvider = ({
+  defaultViewMode,
+  children,
+}: {
+  defaultViewMode: ViewModes;
+  children: ReactNode;
+}) => {
   const [viewMode, setViewMode] = useState<ViewModes>(defaultViewMode);
 
   useEffect(() => {
     setViewMode(defaultViewMode);
   }, [defaultViewMode]);
 
-  console.log(defaultViewMode);
-
   const toggleViewMode = () => {
     setViewMode((view) => (view === "kanban" ? "table" : "kanban"));
   };
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <SearchBar />
-      </header>
-      <Topbar viewMode={viewMode} toggleViewMode={toggleViewMode} />
-      <div className={styles.content}>
-        <Tasks viewMode={viewMode} />
-      </div>
-    </div>
+    <TaskLayoutContext.Provider value={{ viewMode, toggleViewMode }}>
+      {children}
+    </TaskLayoutContext.Provider>
   );
+};
+
+export const TasksLayout = ({
+  defaultViewMode = "kanban",
+}: TasksLayoutProps) => {
+  return (
+    <TaskLayoutProvider defaultViewMode={defaultViewMode}>
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <SearchBar />
+        </header>
+        <Topbar />
+        <div className={styles.content}>
+          <Tasks />
+        </div>
+      </div>
+    </TaskLayoutProvider>
+  );
+};
+
+export const useTaskLayout = (): TaskLayoutContextType => {
+  const context = useContext(TaskLayoutContext);
+  if (!context) {
+    throw new Error("useTaskLayout must be used within a TaskLayoutProvider");
+  }
+  return context;
 };

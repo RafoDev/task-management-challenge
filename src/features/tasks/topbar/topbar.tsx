@@ -1,14 +1,11 @@
 import GridIcon from "/src/assets/icons/dashboard.svg?react";
 import ListIcon from "/src/assets/icons/list.svg?react";
 import styles from "./topbar.module.scss";
-import { ViewModes } from "../../../components/layouts/tasks-layout/tasks-layout";
+import { useTaskLayout } from "../../../components/layouts/tasks-layout/tasks-layout";
 
-type TopbarType = {
-  viewMode: ViewModes;
-  toggleViewMode: () => void;
-};
+export const Topbar = () => {
+  const { toggleViewMode, viewMode } = useTaskLayout();
 
-export const Topbar = ({ viewMode, toggleViewMode }: TopbarType) => {
   return (
     <nav className={styles.container}>
       <button
