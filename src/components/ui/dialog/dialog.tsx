@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
+import ReactDOM, { createPortal } from "react-dom";
 import styles from "./dialog.module.scss";
 
 export type DialogProps = {
@@ -47,7 +47,7 @@ export const Dialog = ({ isOpen, children, actions, onClose }: DialogProps) => {
 
   if (!isOpen) return null;
 
-  return ReactDOM.createPortal(
+  return createPortal(
     <div
       className={styles.overlay}
       role="dialog"

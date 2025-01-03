@@ -23,6 +23,42 @@
   }
 }
 
+.form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 24px;
+  column-gap: 1rem;
+}
+.name {
+  color: colors.$neutral-1;
+  grid-column: span 4;
+  background-color: transparent;
+  border: 0;
+  &:focus {
+    outline: 0;
+  }
+}
+.select {
+  padding: 4px 1rem;
+  cursor: pointer;
+  appearance: none;
+  color: colors.$neutral-1;
+  background-color: #94979a10;
+  border: 0;
+  &:focus {
+    outline: 0;
+  }
+}
+.option {
+  background-color: colors.$neutral-3;
+}
+.buttons {
+}
+.close {
+}
+.create {
+}
+
 @media (min-width: 768px) {
   .button {
     border-radius: 8px;

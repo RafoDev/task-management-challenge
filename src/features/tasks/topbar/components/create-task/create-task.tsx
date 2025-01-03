@@ -81,66 +81,68 @@ export const CreateTask = () => {
         <PlusIcon className={styles.icon} />
       </button>
 
-      <Dialog
-        isOpen={isDialogOpen}
-        onClose={closeDialog}
-        actions={<button onClick={() => closeDialog()}>Close</button>}
-      >
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
             placeholder="Task Name"
-            className="name"
+            className={styles.name}
             {...register("name")}
           />
           {errors.name && <span>{errors.name.message}</span>}
 
           <select
             id="estimate"
-            className="points"
+            className={styles.select}
             {...register("pointEstimate")}
           >
-            <option value="" className="option">
+            <option value="" className={styles.option}>
               Estimate
             </option>
             {pointsEstimate.map((points) => (
-              <option key={points.label} value={points.value}>
+              <option key={points.label} value={points.value} className={styles.option}>
                 {points.label}
               </option>
             ))}
           </select>
           {errors.pointEstimate && <span>{errors.pointEstimate.message}</span>}
-          {errors.status && <span>{errors.status.message}</span>}
 
           <select
             id="assignee"
-            className="assignee"
+            className={styles.select}
             {...register("assigneeId")}
           >
-            <option value="" className="option">
+            <option value="" className={styles.option}>
               Assignee
             </option>
             {usersData?.users.map((user) => (
-              <option key={user.id} value={user.id} className="option">
+              <option key={user.id} value={user.id} className={styles.option}>
                 {user.fullName}
               </option>
             ))}
           </select>
           {errors.assigneeId && <span>{errors.assigneeId.message}</span>}
 
-          <select {...register("tags")} multiple className="tags">
+          <select {...register("tags")} className={styles.select}>
             {tags.map((tag) => (
-              <option key={tag.value} value={tag.value}>
+              <option key={tag.value} value={tag.value} className={styles.option}>
                 {tag.label}
               </option>
             ))}
           </select>
           {errors.tags && <span>{errors.tags.message}</span>}
 
-          <input type="date" {...register("dueDate")} />
+          <input type="date" {...register("dueDate")} className={styles.date} />
           {errors.dueDate && <span>{errors.dueDate.message}</span>}
 
-          <button type="submit">Create Task</button>
+          <footer className={styles.buttons}>
+            <button onClick={() => closeDialog()} className={styles.close}>
+              Close
+            </button>
+            <button type="submit" className={styles.create}>
+              Create Task
+            </button>
+          </footer>
         </form>
       </Dialog>
     </>
