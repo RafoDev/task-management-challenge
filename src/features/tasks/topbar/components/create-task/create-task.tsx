@@ -27,8 +27,20 @@ const tags: { value: TaskTag; label: string }[] = [
 export const CreateTask = () => {
   const { closeDialog, isDialogOpen, openDialog } = useDialog();
   const { data: usersData, loading: usersLoading } = useGetUsersQuery();
-  const [createTask, { data: mutationData, loading, error }] =
-    useCreateTaskMutation();
+  const [createTask] = useCreateTaskMutation({
+    update(cache, { data }) {
+      if (!data?.createTask) return;
+      const newTask = data.createTask;
+      cache.modify({
+        fields: {
+          tasks(existingTaskRefs = [], { toReference }) {
+            const newTaskRef = toReference(newTask);
+            return [...existingTaskRefs, newTaskRef];
+          },
+        },
+      });
+    },
+  });
 
   const {
     register,
@@ -53,10 +65,10 @@ export const CreateTask = () => {
           assigneeId: inputData.assigneeId,
         },
       },
+      onCompleted: () => {
+        toast.success("Task has been created");
+      },
     });
-
-    if (mutationData) toast.success("Task has been created");
-
     closeDialog();
   };
 
