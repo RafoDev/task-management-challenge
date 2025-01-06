@@ -24,6 +24,9 @@
 }
 
 .form {
+  width: 583px;
+  padding: 1rem;
+  cursor: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 24px;
@@ -53,10 +56,38 @@
   background-color: colors.$neutral-3;
 }
 .buttons {
+  grid-column: span 4;
+  justify-self: end;
+  display: flex;
+  gap: 24px;
+}
+.close,
+.create {
+  cursor: pointer;
+  border: none;
+  background-color: colors.$neutral-3;
+  color: colors.$neutral-1;
+  padding: 4px;
+  border-radius: 8px;
+  transition: background-color 0.25s;
 }
 .close {
+  &:hover {
+    background-color: colors.$neutral-2;
+  }
 }
 .create {
+  background-color: colors.$primary-4;
+  &:hover {
+    background-color: colors.$primary-3;
+  }
+  &Disabled {
+    background-color: colors.$primary-1;
+    cursor: not-allowed;
+    &:hover {
+      background-color: colors.$primary-1;
+    }
+  }
 }
 
 @media (min-width: 768px) {

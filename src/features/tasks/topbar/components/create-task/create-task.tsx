@@ -48,13 +48,14 @@ export const CreateTask = () => {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<CreateTaskValue>({
     resolver: zodResolver(CreateTaskSchema),
     defaultValues: {
       status: Status.Todo,
       tags: [],
     },
+    mode: "onChange",
   });
 
   const onSubmit = (inputData: CreateTaskValue) => {
@@ -89,7 +90,7 @@ export const CreateTask = () => {
           <input
             type="text"
             placeholder="Task Name"
-            className={styles.name}
+            className={`${styles.name} body-xl-bold`}
             {...register("name")}
           />
           {errors.name && <span>{errors.name.message}</span>}
@@ -104,6 +105,9 @@ export const CreateTask = () => {
                 placeholder="Estimate"
                 className={styles.select}
               >
+                <Select.Option key={""} value={""}>
+                  {"Ga"}
+                </Select.Option>
                 {pointsEstimate.map((points) => (
                   <Select.Option key={points.value} value={points.value}>
                     {points.label}
@@ -135,22 +139,6 @@ export const CreateTask = () => {
             />
           )}
 
-          {/* <select
-            id="assignee"
-            className={styles.select}
-            {...register("assigneeId")}
-          >
-            <option value="" className={styles.option}>
-              Assignee
-            </option>
-            {usersData?.users.map((user) => (
-              <option key={user.id} value={user.id} className={styles.option}>
-                {user.fullName}
-              </option>
-            ))}
-          </select>
-          {errors.assigneeId && <span>{errors.assigneeId.message}</span>} */}
-
           <Controller
             name="tags"
             control={control}
@@ -178,11 +166,19 @@ export const CreateTask = () => {
           {errors.dueDate && <span>{errors.dueDate.message}</span>}
 
           <footer className={styles.buttons}>
-            <button onClick={() => closeDialog()} className={styles.close}>
+            <button
+              onClick={() => closeDialog()}
+              className={`${styles.close} body-m-regular`}
+            >
               Close
             </button>
-            <button type="submit" className={styles.create}>
-              Create Task
+            <button
+              type="submit"
+              className={`${styles.create} ${
+                !isValid && styles.createDisabled
+              } body-m-regular`}
+            >
+              Create
             </button>
           </footer>
         </form>
