@@ -1,4 +1,10 @@
-import React, { ReactElement, useCallback, useRef, useState } from "react";
+import React, {
+  ReactElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { SelectContext } from "./context/select-context";
 import { SelectComponent, SelectProps } from "./types";
 import { useOutsideClick } from "./hooks/use-outside-click";
@@ -23,10 +29,16 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       multiple = false,
       ...props
     },
-    ref
+    forwardedRef
   ) => {
     const [isOpen, setIsOpen] = useState(false);
     const selectRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      if (forwardedRef && "current" in forwardedRef) {
+        forwardedRef.current = selectRef.current;
+      }
+    }, [forwardedRef]);
 
     useOutsideClick(selectRef, () => setIsOpen(false));
 

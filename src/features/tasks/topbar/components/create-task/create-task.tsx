@@ -27,7 +27,7 @@ const tags: { value: TaskTag; label: string }[] = [
 
 export const CreateTask = () => {
   const { closeDialog, isDialogOpen, openDialog } = useDialog();
-  const { data: usersData, loading: usersLoading } = useGetUsersQuery();
+  const { data: usersData } = useGetUsersQuery();
 
   const [createTask] = useCreateTaskMutation({
     update(cache, { data }) {

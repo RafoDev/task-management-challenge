@@ -1,8 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { DashboardLayout } from "../components/layouts/dashboard-layout/dashboard-layout";
-import { KanbanView } from "../features/tasks";
 import { TasksLayout } from "../components/layouts/tasks-layout/tasks-layout";
-import { TableView } from "../features/tasks/table-view/table-view";
 
 export const AppRouter = () => {
   return (
