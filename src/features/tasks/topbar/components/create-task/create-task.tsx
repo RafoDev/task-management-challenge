@@ -3,11 +3,12 @@ import PlusIcon from "/src/assets/icons/plus.svg?react";
 import styles from "./create-task.module.scss";
 import { PointEstimate, Status, TaskTag } from "../../../../../types";
 import { useGetUsersQuery } from "../../../getUsers.generated";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateTaskSchema, CreateTaskValue } from "./create-task-schema";
 import { useCreateTaskMutation } from "../../../createTask.generated";
 import { toast } from "sonner";
+import Select from "../../../../../components/ui/select";
 
 const pointsEstimate: { value: PointEstimate; label: string }[] = [
   { value: PointEstimate.One, label: "1 Points" },
@@ -27,6 +28,7 @@ const tags: { value: TaskTag; label: string }[] = [
 export const CreateTask = () => {
   const { closeDialog, isDialogOpen, openDialog } = useDialog();
   const { data: usersData, loading: usersLoading } = useGetUsersQuery();
+
   const [createTask] = useCreateTaskMutation({
     update(cache, { data }) {
       if (!data?.createTask) return;
@@ -44,12 +46,14 @@ export const CreateTask = () => {
 
   const {
     register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateTaskValue>({
     resolver: zodResolver(CreateTaskSchema),
     defaultValues: {
       status: Status.Todo,
+      tags: [],
     },
   });
 
@@ -71,7 +75,6 @@ export const CreateTask = () => {
     });
     closeDialog();
   };
-
   return (
     <>
       <button
@@ -91,23 +94,48 @@ export const CreateTask = () => {
           />
           {errors.name && <span>{errors.name.message}</span>}
 
-          <select
-            id="estimate"
-            className={styles.select}
-            {...register("pointEstimate")}
-          >
-            <option value="" className={styles.option}>
-              Estimate
-            </option>
-            {pointsEstimate.map((points) => (
-              <option key={points.label} value={points.value} className={styles.option}>
-                {points.label}
-              </option>
-            ))}
-          </select>
-          {errors.pointEstimate && <span>{errors.pointEstimate.message}</span>}
+          <Controller
+            name="pointEstimate"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                error={errors.pointEstimate?.message}
+                placeholder="Estimate"
+                className={styles.select}
+              >
+                {pointsEstimate.map((points) => (
+                  <Select.Option key={points.value} value={points.value}>
+                    {points.label}
+                  </Select.Option>
+                ))}
+              </Select>
+            )}
+          />
 
-          <select
+          {errors.pointEstimate && <span>{errors.pointEstimate.message}</span>}
+          {usersData && (
+            <Controller
+              name="assigneeId"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  error={errors.assigneeId?.message}
+                  placeholder="Assignee"
+                  className={styles.select}
+                >
+                  {usersData.users.map((user) => (
+                    <Select.Option key={user.id} value={user.id}>
+                      {user.fullName}
+                    </Select.Option>
+                  ))}
+                </Select>
+              )}
+            />
+          )}
+
+          {/* <select
             id="assignee"
             className={styles.select}
             {...register("assigneeId")}
@@ -121,15 +149,29 @@ export const CreateTask = () => {
               </option>
             ))}
           </select>
-          {errors.assigneeId && <span>{errors.assigneeId.message}</span>}
+          {errors.assigneeId && <span>{errors.assigneeId.message}</span>} */}
 
-          <select {...register("tags")} className={styles.select}>
-            {tags.map((tag) => (
-              <option key={tag.value} value={tag.value} className={styles.option}>
-                {tag.label}
-              </option>
-            ))}
-          </select>
+          <Controller
+            name="tags"
+            control={control}
+            render={({ field: { value, onChange, ...field } }) => (
+              <Select
+                {...field}
+                value={value || []}
+                onChange={onChange}
+                error={errors.tags?.message}
+                placeholder="Select Tags"
+                className={styles.select}
+                multiple
+              >
+                {tags.map((tag) => (
+                  <Select.CheckboxOption key={tag.value} value={tag.value}>
+                    {tag.label}
+                  </Select.CheckboxOption>
+                ))}
+              </Select>
+            )}
+          />
           {errors.tags && <span>{errors.tags.message}</span>}
 
           <input type="date" {...register("dueDate")} className={styles.date} />

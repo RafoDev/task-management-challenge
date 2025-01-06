@@ -1,0 +1,20 @@
+@use "/src/shared/styles/variables/colors";
+
+.container {
+  box-sizing: border-box;
+  padding: 4px 1rem;
+  width: 100%;
+  transition: background-color 0.05s ease-in-out;
+  display: flex;
+  &:hover {
+    background-color: colors.$neutral-5;
+  }
+}
+
+.label {
+  box-sizing: border-box;
+  width: 100%;
+}
+.selected {
+  background-color: colors.$neutral-5;
+}
