@@ -3,18 +3,12 @@
 .container {
   box-sizing: border-box;
   padding: 4px 1rem;
-  width: auto;
   transition: background-color 0.05s ease-in-out;
   display: flex;
-  &:hover {
-    background-color: colors.$neutral-5;
-  }
+  user-select: none;
+  cursor: default;
 }
-
-.label {
-  box-sizing: border-box;
+.content {
   width: 100%;
-}
-.selected {
-  background-color: colors.$neutral-5;
+  color: colors.$neutral-2;
 }

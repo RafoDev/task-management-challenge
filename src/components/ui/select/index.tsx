@@ -15,6 +15,7 @@ import {
   SelectTrigger,
 } from "./components";
 import styles from "./select.module.scss";
+import { Label } from "./components/label/label";
 
 const Select = React.forwardRef<HTMLDivElement, SelectProps>(
   (
@@ -42,9 +43,18 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
     useOutsideClick(selectRef, () => setIsOpen(false));
 
+    const getOptionChildren = useCallback(() => {
+      return React.Children.toArray(children).filter(
+        (child) =>
+          React.isValidElement(child) &&
+          (child.type === Option || child.type === CheckboxOption)
+      );
+    }, [children]);
+
     const getDisplayValue = useCallback(() => {
+      const optionChildren = getOptionChildren();
       if (multiple) {
-        const selectedValues = React.Children.toArray(children)
+        const selectedValues = optionChildren
           .filter((child) => {
             const childElement = child as ReactElement;
             return (
@@ -58,7 +68,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         return `${selectedValues.length} items selected`;
       }
 
-      const selectedChild = React.Children.toArray(children).find(
+      const selectedChild = optionChildren.find(
         (child) => (child as ReactElement).props.value === value
       ) as ReactElement;
 
@@ -93,6 +103,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 ) as SelectComponent;
 
 Select.displayName = "Select";
+Select.Label = Label;
 Select.Option = Option;
 Select.CheckboxOption = CheckboxOption;
 

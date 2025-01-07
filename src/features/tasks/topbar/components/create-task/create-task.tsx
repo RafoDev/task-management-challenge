@@ -94,6 +94,7 @@ export const CreateTask = () => {
             className={`${styles.name} body-xl-bold`}
             {...register("name")}
           />
+
           {errors.name && <span>{errors.name.message}</span>}
 
           <Controller
@@ -106,9 +107,7 @@ export const CreateTask = () => {
                 placeholder="Estimate"
                 className={styles.select}
               >
-                <Select.Option key={""} value={""}>
-                  {"Ga"}
-                </Select.Option>
+                <Select.Label>Estimate Pts</Select.Label>
                 {pointsEstimate.map((points) => (
                   <Select.Option key={points.value} value={points.value}>
                     {points.label}
@@ -119,6 +118,7 @@ export const CreateTask = () => {
           />
 
           {errors.pointEstimate && <span>{errors.pointEstimate.message}</span>}
+
           {usersData && (
             <Controller
               name="assigneeId"
@@ -130,6 +130,8 @@ export const CreateTask = () => {
                   placeholder="Assignee"
                   className={styles.select}
                 >
+                  <Select.Label>Assign To...</Select.Label>
+
                   {usersData.users.map((user) => (
                     <Select.Option key={user.id} value={user.id}>
                       {user.fullName}
@@ -153,6 +155,8 @@ export const CreateTask = () => {
                 className={styles.select}
                 multiple
               >
+                <Select.Label>Tag Title</Select.Label>
+
                 {tags.map((tag) => (
                   <Select.CheckboxOption key={tag.value} value={tag.value}>
                     {tag.label}

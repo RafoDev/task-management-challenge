@@ -4,12 +4,12 @@ import TimerIcon from "/src/assets/icons/timer.svg?react";
 import AttachIcon from "/src/assets/icons/attach.svg?react";
 import ConnectionsIcon from "/src/assets/icons/connections.svg?react";
 import CommentsIcon from "/src/assets/icons/comments.svg?react";
-import { GetTasksQuery } from "../../../getTasks.generated";
 import { Avatar } from "../../../../../components/ui";
 import { Tag } from "../../../../../components/ui/tag/tag";
 import { formatDate, formatEstimatedPoints } from "../../../utils";
+import { GetAllTasksQuery } from "../../../graphql/queries/getTasks.generated";
 
-type TaskCardType = GetTasksQuery["tasks"][number];
+type TaskCardType = GetAllTasksQuery["tasks"][number];
 
 export const TaskCard = (props: TaskCardType) => {
   const points = formatEstimatedPoints(props.pointEstimate);

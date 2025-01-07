@@ -1,12 +1,12 @@
 import styles from "./row.module.scss";
 import ConnectionsIcon from "/src/assets/icons/connections.svg?react";
 import CommentsIcon from "/src/assets/icons/comments.svg?react";
-import { GetTasksQuery } from "../../../getTasks.generated";
 import { formatDate } from "../../../utils/format-date";
 import { Avatar, Tags } from "../../../../../components/ui";
 import { formatEstimatedPoints } from "../../../utils";
+import { GetAllTasksQuery } from "../../../graphql/queries/getTasks.generated";
 
-type RowType = GetTasksQuery["tasks"][number];
+type RowType = GetAllTasksQuery["tasks"][number];
 
 export const Row = (props: RowType) => {
   const points = formatEstimatedPoints(props.pointEstimate);
