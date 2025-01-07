@@ -9,6 +9,7 @@ import { CreateTaskSchema, CreateTaskValue } from "./create-task-schema";
 import { useCreateTaskMutation } from "../../../createTask.generated";
 import { toast } from "sonner";
 import Select from "../../../../../components/ui/select";
+import DatePicker from "../../../../../components/ui/date-picker/date-picker";
 
 const pointsEstimate: { value: PointEstimate; label: string }[] = [
   { value: PointEstimate.One, label: "1 Points" },
@@ -148,7 +149,7 @@ export const CreateTask = () => {
                 value={value || []}
                 onChange={onChange}
                 error={errors.tags?.message}
-                placeholder="Select Tags"
+                placeholder="Label"
                 className={styles.select}
                 multiple
               >
@@ -161,8 +162,23 @@ export const CreateTask = () => {
             )}
           />
           {errors.tags && <span>{errors.tags.message}</span>}
-
-          <input type="date" {...register("dueDate")} className={styles.date} />
+          
+          <Controller
+            control={control}
+            name="dueDate"
+            render={({ field: { onChange, onBlur, value } }) => (
+              <DatePicker
+                selected={value ? new Date(value) : null}
+                onChange={(date) => {
+                  const dateString = date
+                    ? date.toISOString().split("T")[0]
+                    : "";
+                  onChange(dateString);
+                }}
+                onBlur={onBlur}
+              />
+            )}
+          />
           {errors.dueDate && <span>{errors.dueDate.message}</span>}
 
           <footer className={styles.buttons}>
