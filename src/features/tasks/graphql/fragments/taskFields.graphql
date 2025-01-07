@@ -1,0 +1,19 @@
+fragment TaskFields on Task {
+  id
+  name
+  status
+  dueDate
+  pointEstimate
+  tags
+  position
+  assignee {
+    id
+    fullName
+    avatar
+  }
+  creator {
+    id
+    fullName
+  }
+  createdAt
+}

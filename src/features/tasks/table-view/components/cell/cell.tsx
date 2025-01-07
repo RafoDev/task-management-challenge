@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Status } from "../../../../../types";
-import { useGetTasksQuery } from "../../../getTasks.generated";
 import { Row } from "../row/row";
 import styles from "./cell.module.scss";
 import ArrowDownIcon from "/src/assets/icons/arrow-down.svg?react";
 import PlusIcon from "/src/assets/icons/plus.svg?react";
 import ThreeDots from "/src/assets/icons/three-dots.svg?react";
+import { useGetAllTasksQuery } from "../../../graphql/queries/getTasks.generated";
 
 type CellType = {
   title: string;
@@ -13,7 +13,7 @@ type CellType = {
 };
 
 export const Cell = ({ title, status }: CellType) => {
-  const { data, loading } = useGetTasksQuery({
+  const { data, loading } = useGetAllTasksQuery({
     variables: { status: Status[status] },
   });
 

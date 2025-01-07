@@ -2,14 +2,14 @@ import { Dialog, useDialog } from "../../../../../components/ui/dialog/dialog";
 import PlusIcon from "/src/assets/icons/plus.svg?react";
 import styles from "./create-task.module.scss";
 import { PointEstimate, Status, TaskTag } from "../../../../../types";
-import { useGetUsersQuery } from "../../../getUsers.generated";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateTaskSchema, CreateTaskValue } from "./create-task-schema";
-import { useCreateTaskMutation } from "../../../createTask.generated";
 import { toast } from "sonner";
 import Select from "../../../../../components/ui/select";
 import DatePicker from "../../../../../components/ui/date-picker/date-picker";
+import { useCreateTaskMutation } from "../../../graphql/queries/createTask.generated";
+import { useGetUsersQuery } from "../../../graphql/queries/getUsers.generated";
 
 const pointsEstimate: { value: PointEstimate; label: string }[] = [
   { value: PointEstimate.One, label: "1 Points" },
@@ -162,7 +162,7 @@ export const CreateTask = () => {
             )}
           />
           {errors.tags && <span>{errors.tags.message}</span>}
-          
+
           <Controller
             control={control}
             name="dueDate"

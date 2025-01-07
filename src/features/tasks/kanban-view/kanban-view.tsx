@@ -1,28 +1,16 @@
-import { Status } from "../../../types";
+import { useGetKanbanTasksQuery } from "../graphql/queries/getKanbanTasks.generated";
 import { Kanban } from "./components/kanban/kanban";
 import styles from "./kanban-view.module.scss";
 
-const kanbans: { title: string; status: keyof typeof Status }[] = [
-  {
-    title: "Working",
-    status: "Todo",
-  },
-  {
-    title: "In Progress",
-    status: "InProgress",
-  },
-  {
-    title: "Completed",
-    status: "Done",
-  },
-];
-
 export const KanbanView = () => {
+  const { data, loading } = useGetKanbanTasksQuery();
+  if (loading) return <span>loading</span>;
+
   return (
     <div className={styles.container}>
-      {kanbans.map(({ title, status }) => (
-        <Kanban key={title} title={title} status={status} />
-      ))}
+      <Kanban title="Working" tasks={data?.todoTasks ?? []} />
+      <Kanban title="In Progress" tasks={data?.inProgressTasks ?? []} />
+      <Kanban title="Done" tasks={data?.doneTasks ?? []} />
     </div>
   );
 };

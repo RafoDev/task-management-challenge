@@ -1,0 +1,12 @@
+#import "../fragments/TaskFields.graphql"
+query GetKanbanTasks {
+  todoTasks: tasks(input: { status: TODO }) {
+    ...TaskFields
+  }
+  inProgressTasks: tasks(input: { status: IN_PROGRESS }) {
+    ...TaskFields
+  }
+  doneTasks: tasks(input: { status: DONE }) {
+    ...TaskFields
+  }
+}

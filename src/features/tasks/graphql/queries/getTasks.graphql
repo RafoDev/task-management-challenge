@@ -1,4 +1,4 @@
-query GetTasks($status: Status!) {
+query GetAllTasks($status: Status!) {
   tasks(input: { status: $status }) {
     id
     name
