@@ -1,5 +1,4 @@
 import styles from "./task-card.module.scss";
-import ThreeDotsIcon from "/src/assets/icons/three-dots.svg?react";
 import TimerIcon from "/src/assets/icons/timer.svg?react";
 import AttachIcon from "/src/assets/icons/attach.svg?react";
 import ConnectionsIcon from "/src/assets/icons/connections.svg?react";
@@ -8,6 +7,7 @@ import { Avatar } from "../../../../../components/ui";
 import { Tag } from "../../../../../components/ui/tag/tag";
 import { formatDate, formatEstimatedPoints } from "../../../utils";
 import { GetAllTasksQuery } from "../../../graphql/queries/getTasks.generated";
+import { Dropdown } from "./components/dropdown/dropdown";
 
 type TaskCardType = GetAllTasksQuery["tasks"][number];
 
@@ -19,9 +19,7 @@ export const TaskCard = (props: TaskCardType) => {
     <article className={styles.container}>
       <header className={styles.header}>
         <h4 className={`${styles.name} body-l-bold`}>{props.name}</h4>
-        <figure className={styles.options}>
-          <ThreeDotsIcon className={styles.optionsIcon} />
-        </figure>
+        <Dropdown />
       </header>
 
       <div className={styles.content}>

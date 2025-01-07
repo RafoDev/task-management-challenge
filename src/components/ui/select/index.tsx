@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { SelectContext } from "./context/select-context";
 import { SelectComponent, SelectProps } from "./types";
-import { useOutsideClick } from "./hooks/use-outside-click";
+import { useOutsideClick } from "../../../shared/hooks/use-outside-click";
 import {
   Option,
   CheckboxOption,
