@@ -1,6 +1,12 @@
-import { useGetKanbanTasksQuery } from "../graphql/queries/getKanbanTasks.generated";
+import { GetKanbanTasksQuery, useGetKanbanTasksQuery } from "../graphql/queries/getKanbanTasks.generated";
 import { Kanban } from "./components/kanban/kanban";
 import styles from "./kanban-view.module.scss";
+
+export type TaskCardType = GetKanbanTasksQuery[
+  | "inProgressTasks"
+  | "doneTasks"
+  | "todoTasks"][number];
+
 
 export const KanbanView = () => {
   const { data, loading } = useGetKanbanTasksQuery();

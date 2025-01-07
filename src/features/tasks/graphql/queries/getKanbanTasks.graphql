@@ -1,4 +1,3 @@
-#import "../fragments/TaskFields.graphql"
 query GetKanbanTasks {
   todoTasks: tasks(input: { status: TODO }) {
     ...TaskFields

@@ -11,9 +11,4 @@ fragment TaskFields on Task {
     fullName
     avatar
   }
-  creator {
-    id
-    fullName
-  }
-  createdAt
 }

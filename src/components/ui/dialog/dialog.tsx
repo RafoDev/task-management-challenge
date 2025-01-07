@@ -1,28 +1,75 @@
-import React, { useEffect, useRef, useState } from "react";
+import {
+  cloneElement,
+  MouseEvent,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
 import styles from "./dialog.module.scss";
-
-export type DialogProps = {
-  isOpen: boolean;
-  children: React.ReactNode;
-  actions?: React.ReactNode;
-  onClose: () => void;
-};
+import { DialogContext, useDialogContext } from "./dialog-context";
 
 const modalRoot = document.getElementById("modal-root");
 
 export const useDialog = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const closeDialog = () => {
-    setIsDialogOpen(false);
-  };
-  const openDialog = () => {
-    setIsDialogOpen(true);
-  };
+  const closeDialog = () => setIsDialogOpen(false);
+  const openDialog = () => setIsDialogOpen(true);
+
   return { isDialogOpen, closeDialog, openDialog };
 };
 
-export const Dialog = ({ isOpen, children, actions, onClose }: DialogProps) => {
+type DialogProps = {
+  open: boolean;
+  onClose: () => void;
+  onOpen: () => void;
+  children: ReactNode;
+};
+
+const Dialog = ({ open, onOpen, onClose, children }: DialogProps) => {
+  return (
+    <DialogContext.Provider
+      value={{
+        isOpen: open,
+        onOpen,
+        onClose,
+      }}
+    >
+      {children}
+    </DialogContext.Provider>
+  );
+};
+
+type DialogTriggerProps = {
+  children: ReactNode;
+  asChild?: boolean;
+};
+
+const DialogTrigger = ({ children, asChild }: DialogTriggerProps) => {
+  const { onOpen } = useDialogContext();
+
+  if (asChild) {
+    return cloneElement(children as ReactElement, {
+      onClick: onOpen,
+    });
+  }
+
+  return (
+    <button type="button" onClick={onOpen}>
+      {children}
+    </button>
+  );
+};
+
+type ContentProps = {
+  children: ReactNode;
+  className?: string;
+};
+
+const DialogContent = ({ children, className }: ContentProps) => {
+  const { isOpen, onClose } = useDialogContext();
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,27 +86,26 @@ export const Dialog = ({ isOpen, children, actions, onClose }: DialogProps) => {
     }
   }, [isOpen, onClose]);
 
-  const handleOverlayClick = (e: React.MouseEvent) => {
+  const handleOverlayClick = (e: MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || !modalRoot) return null;
 
   return createPortal(
-    <div
-      className={styles.overlay}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="dialog-title"
-      onClick={handleOverlayClick}
-    >
-      <div className={styles.dialog} ref={dialogRef}>
+    <div className={styles.overlay} onClick={handleOverlayClick}>
+      <div className={`${styles.dialog} ${className}`} ref={dialogRef}>
         {children}
-        {actions && <footer className={styles.footer}>{actions}</footer>}
       </div>
     </div>,
-    modalRoot!
+    modalRoot
   );
 };
+
+Dialog.displayName = "Dialog";
+Dialog.Trigger = DialogTrigger;
+Dialog.Content = DialogContent;
+
+export default Dialog;

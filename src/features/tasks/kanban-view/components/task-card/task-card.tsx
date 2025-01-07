@@ -6,10 +6,8 @@ import CommentsIcon from "/src/assets/icons/comments.svg?react";
 import { Avatar } from "../../../../../components/ui";
 import { Tag } from "../../../../../components/ui/tag/tag";
 import { formatDate, formatEstimatedPoints } from "../../../utils";
-import { GetAllTasksQuery } from "../../../graphql/queries/getTasks.generated";
 import { Dropdown } from "./components/dropdown/dropdown";
-
-type TaskCardType = GetAllTasksQuery["tasks"][number];
+import { TaskCardType } from "../../kanban-view";
 
 export const TaskCard = (props: TaskCardType) => {
   const points = formatEstimatedPoints(props.pointEstimate);
@@ -19,7 +17,7 @@ export const TaskCard = (props: TaskCardType) => {
     <article className={styles.container}>
       <header className={styles.header}>
         <h4 className={`${styles.name} body-l-bold`}>{props.name}</h4>
-        <Dropdown />
+        <Dropdown {...props} />
       </header>
 
       <div className={styles.content}>

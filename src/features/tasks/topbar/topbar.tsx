@@ -2,7 +2,8 @@ import GridIcon from "/src/assets/icons/dashboard.svg?react";
 import ListIcon from "/src/assets/icons/list.svg?react";
 import styles from "./topbar.module.scss";
 import { useTaskLayout } from "../../../components/layouts/tasks-layout/tasks-layout";
-import { CreateTask } from "./components/create-task/create-task";
+import { TaskForm } from "../task-form/task-form";
+import PlusIcon from "/src/assets/icons/plus.svg?react";
 
 export const Topbar = () => {
   const { toggleViewMode, viewMode } = useTaskLayout();
@@ -37,7 +38,14 @@ export const Topbar = () => {
         </figure>
         <span className={`${styles.label} body-s-regular`}>Dashboard</span>
       </button>
-      <CreateTask />
+
+      <TaskForm
+        trigger={
+          <button className={`${styles.button} ${styles.create}`}>
+            <PlusIcon className={styles.icon} />
+          </button>
+        }
+      />
     </nav>
   );
 };

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PointEstimate, Status, TaskTag } from "../../../../../types";
+import { PointEstimate, Status, TaskTag } from "../../../types";
 
 const PointEstimateEnum = z.enum([
   PointEstimate.Eight,
@@ -25,7 +25,7 @@ const TaskTagEnum = z.enum([
   TaskTag.React,
 ]);
 
-export const CreateTaskSchema = z.object({
+const BaseTaskSchema = z.object({
   assigneeId: z.string().optional(),
   dueDate: z.string().refine((val) => !isNaN(Date.parse(val)), {
     message: "Invalid date format",
@@ -34,6 +34,15 @@ export const CreateTaskSchema = z.object({
   pointEstimate: PointEstimateEnum,
   status: StatusEnum,
   tags: z.array(TaskTagEnum).min(1, "At least one tag is required"),
+  position: z.number().optional(),
 });
 
+export const CreateTaskSchema = BaseTaskSchema;
+
+export const UpdateTaskSchema = BaseTaskSchema.extend({
+  id: z.string(),
+});
+
+export type TaskFormValue = z.infer<typeof BaseTaskSchema>;
 export type CreateTaskValue = z.infer<typeof CreateTaskSchema>;
+export type UpdateTaskValue = z.infer<typeof UpdateTaskSchema>;
