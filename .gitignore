@@ -28,4 +28,4 @@ dist-ssr
 
 # GraphQL
 *.generated.tsx
-types.ts
+src/types.ts
