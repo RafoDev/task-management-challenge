@@ -11,13 +11,14 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import styles from "./task-form.module.scss";
-// import PlusIcon from "/src/assets/icons/plus.svg?react";
 import Select from "../../../components/ui/select";
 import DatePicker from "../../../components/ui/date-picker/date-picker";
-import Dialog, { useDialog } from "../../../components/ui/dialog/dialog";
+import Dialog from "../../../components/ui/dialog/dialog";
 import { TaskFieldsFragment } from "../graphql/fragments/taskFields.generated";
+import { useState } from "react";
 
 const pointsEstimate = [
+  { value: PointEstimate.Zero, label: "0 Points" },
   { value: PointEstimate.One, label: "1 Points" },
   { value: PointEstimate.Two, label: "2 Points" },
   { value: PointEstimate.Four, label: "4 Points" },
@@ -32,6 +33,14 @@ const tags = [
   { value: TaskTag.React, label: "React" },
 ];
 
+export const useTaskForm = () => {
+  const [isTaskFormOpen, setIsTaskFormOpen] = useState(false);
+  const closeTaskForm = () => setIsTaskFormOpen(false);
+  const openTaskForm = () => setIsTaskFormOpen(true);
+
+  return { isTaskFormOpen, closeTaskForm, openTaskForm };
+};
+
 interface TaskFormProps {
   initialData?: TaskFormValue & {
     id?: string;
@@ -40,14 +49,22 @@ interface TaskFormProps {
   };
   onSuccess?: () => void;
   trigger?: React.ReactNode;
+  open?: boolean;
+  isTaskFormOpen: boolean;
+  openTaskForm: () => void;
+  closeTaskForm: () => void;
 }
 
 export const TaskForm: React.FC<TaskFormProps> = ({
   initialData,
   onSuccess,
   trigger,
+  isTaskFormOpen,
+  openTaskForm,
+  closeTaskForm,
 }) => {
-  const { isDialogOpen, openDialog, closeDialog } = useDialog();
+  // const { isDialogOpen, openDialog, closeDialog } = useDialog();
+
   const { data: usersData } = useGetUsersQuery();
   const isEditMode = !!initialData?.id;
 
@@ -116,7 +133,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
         });
         toast.success("Task has been created");
       }
-      closeDialog();
+      closeTaskForm();
       onSuccess?.();
     } catch (error) {
       toast.error("An error occurred");
@@ -125,8 +142,12 @@ export const TaskForm: React.FC<TaskFormProps> = ({
 
   return (
     <>
-      <Dialog open={isDialogOpen} onOpen={openDialog} onClose={closeDialog}>
-        <Dialog.Trigger asChild={true}>{trigger}</Dialog.Trigger>
+      <Dialog
+        open={isTaskFormOpen}
+        onOpen={openTaskForm}
+        onClose={closeTaskForm}
+      >
+        {trigger && <Dialog.Trigger asChild={true}>{trigger}</Dialog.Trigger>}
         <Dialog.Content>
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <input
@@ -226,7 +247,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
 
             <footer className={styles.buttons}>
               <button
-                onClick={() => closeDialog()}
+                onClick={() => closeTaskForm()}
                 className={`${styles.close} body-m-regular`}
               >
                 Close
