@@ -1,8 +1,8 @@
 import { Controller, useForm } from "react-hook-form";
 import { PointEstimate, Status, TaskTag } from "../../../types";
-import { useCreateTaskMutation } from "../graphql/queries/createTask.generated";
+import { useCreateTaskMutation } from "../graphql/mutations/createTask.generated";
 import { useGetUsersQuery } from "../graphql/queries/getUsers.generated";
-import { useUpdateTaskMutation } from "../graphql/queries/updateTask.generated";
+import { useUpdateTaskMutation } from "../graphql/mutations/updateTask.generated";
 import {
   CreateTaskSchema,
   TaskFormValue,
@@ -58,13 +58,11 @@ interface TaskFormProps {
 export const TaskForm: React.FC<TaskFormProps> = ({
   initialData,
   onSuccess,
-  trigger,
+  // trigger, 
   isTaskFormOpen,
   openTaskForm,
   closeTaskForm,
 }) => {
-  // const { isDialogOpen, openDialog, closeDialog } = useDialog();
-
   const { data: usersData } = useGetUsersQuery();
   const isEditMode = !!initialData?.id;
 
@@ -147,7 +145,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
         onOpen={openTaskForm}
         onClose={closeTaskForm}
       >
-        {trigger && <Dialog.Trigger asChild={true}>{trigger}</Dialog.Trigger>}
         <Dialog.Content>
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <input

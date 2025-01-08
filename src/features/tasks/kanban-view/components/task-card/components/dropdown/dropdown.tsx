@@ -6,12 +6,27 @@ import ThreeDotsIcon from "/src/assets/icons/three-dots.svg?react";
 import TrashIcon from "/src/assets/icons/trash.svg?react";
 import { TaskForm, useTaskForm } from "../../../../../task-form/task-form";
 import { TaskCardType } from "../../../../kanban-view";
+import { useDeleteTaskMutation } from "../../../../../graphql/mutations/deleteTask.generated";
+import { toast } from "sonner";
 
 export const Dropdown = (props: TaskCardType) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const { isTaskFormOpen, openTaskForm, closeTaskForm } = useTaskForm();
 
+  const [deleteTask] = useDeleteTaskMutation({
+    update(cache, { data }) {
+      cache.modify({
+        fields: {
+          tasks(existingTasks = [], { readField }) {
+            return existingTasks.filter(
+              (taskRef: any) => readField("id", taskRef) !== data?.deleteTask.id
+            );
+          },
+        },
+      });
+    },
+  });
   useOutsideClick(dropdownRef, () => {
     if (isOpen) setIsOpen(false);
   });
@@ -19,6 +34,22 @@ export const Dropdown = (props: TaskCardType) => {
   const handleEditClick = () => {
     setIsOpen(false);
     openTaskForm();
+  };
+
+  const handleDeleteTask = async (taskId: string) => {
+    setIsOpen(false);
+    try {
+      await deleteTask({
+        variables: {
+          input: {
+            id: taskId,
+          },
+        },
+      });
+      toast.success("Task has been deleted");
+    } catch (err) {
+      console.error("Error deleting task:", err);
+    }
   };
 
   return (
@@ -38,7 +69,12 @@ export const Dropdown = (props: TaskCardType) => {
             <span className={`${styles.label} body-m-regular`}>Edit</span>
           </li>
 
-          <li className={styles.option}>
+          <li
+            className={styles.option}
+            onClick={() => {
+              handleDeleteTask(props.id);
+            }}
+          >
             <TrashIcon className={styles.icon} />
             <span className={styles.label}>Delete</span>
           </li>
