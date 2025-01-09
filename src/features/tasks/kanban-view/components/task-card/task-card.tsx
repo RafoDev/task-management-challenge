@@ -12,15 +12,18 @@ import { TaskFieldsFragment } from "../../../graphql/fragments/taskFields.genera
 export const TaskCard = (props: TaskFieldsFragment) => {
   const points = formatEstimatedPoints(props.pointEstimate);
   const formattedDueDate = formatDate(props.dueDate);
+  const animationClass = "animate__animated animate__fadeIn";
 
   return (
-    <article className={styles.container}>
-      <header className={styles.header}>
-        <h4 className={`${styles.name} body-l-bold`}>{props.name}</h4>
+    <article className={`${styles.container}`}>
+      <header className={`${styles.header} ${animationClass}`}>
+        <h4 className={`${styles.name} ${animationClass} body-l-bold`}>
+          {props.name}
+        </h4>
         <Dropdown {...props} />
       </header>
 
-      <div className={styles.content}>
+      <div className={`${styles.content} ${animationClass}`}>
         <span className={`${styles.points} body-m-bold`}>{points} Pts</span>
         <Tag style={"neutral"}>
           <TimerIcon className={styles.timerIcon} />
@@ -30,7 +33,7 @@ export const TaskCard = (props: TaskFieldsFragment) => {
         </Tag>
       </div>
 
-      <div className={styles.tags}>
+      <div className={`${styles.tags} ${animationClass}`}>
         {props.tags.map((tag) => (
           <Tag key={tag} style={tag}>
             <span className={"body-m-bold"}>{tag}</span>
@@ -38,7 +41,7 @@ export const TaskCard = (props: TaskFieldsFragment) => {
         ))}
       </div>
 
-      <footer className={styles.footer}>
+      <footer className={`${styles.footer} ${animationClass}`}>
         <Avatar
           id={props.assignee?.id || ""}
           avatar={props.assignee?.avatar}
