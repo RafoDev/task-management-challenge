@@ -1,0 +1,89 @@
+@use "/src/shared/styles/variables/colors";
+
+.container {
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 500px;
+  cursor: auto;
+}
+
+.title {
+  margin: 0;
+}
+.header {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+.main {
+  margin-bottom: 1.5rem;
+}
+.explanation {
+  margin: 0;
+}
+.icon {
+  width: 32px;
+  height: 32px;
+  color: colors.$neutral-2;
+}
+
+.buttons {
+  justify-self: end;
+  display: flex;
+  gap: 24px;
+}
+
+.button {
+  box-sizing: border-box;
+  cursor: pointer;
+  border: none;
+  background-color: colors.$neutral-3;
+  color: colors.$neutral-1;
+  padding: 4px 12px;
+  border-radius: 8px;
+  transition: background-color 0.25s;
+
+  &:focus {
+    outline: 0px;
+  }
+  &:hover {
+    background-color: colors.$neutral-2;
+  }
+
+  &Confirm {
+    background-color: colors.$primary-4;
+    &:hover {
+      background-color: colors.$primary-3;
+    }
+  }
+}
+
+.close,
+.create {
+  cursor: pointer;
+  border: none;
+  background-color: colors.$neutral-3;
+  color: colors.$neutral-1;
+  padding: 4px;
+  border-radius: 8px;
+  transition: background-color 0.25s;
+}
+.close {
+  &:hover {
+    background-color: colors.$neutral-2;
+  }
+}
+.create {
+  background-color: colors.$primary-4;
+  &:hover {
+    background-color: colors.$primary-3;
+  }
+  &Disabled {
+    background-color: colors.$primary-1;
+    cursor: not-allowed;
+    &:hover {
+      background-color: colors.$primary-1;
+    }
+  }
+}
