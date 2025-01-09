@@ -16,7 +16,7 @@ export const TaskCard = (props: TaskFieldsFragment) => {
 
   return (
     <article className={`${styles.container}`}>
-      <header className={`${styles.header} ${animationClass}`}>
+      <header className={`${styles.header}`}>
         <h4 className={`${styles.name} ${animationClass} body-l-bold`}>
           {props.name}
         </h4>

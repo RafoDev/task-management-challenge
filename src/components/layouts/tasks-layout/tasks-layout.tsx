@@ -15,6 +15,7 @@ import useDebounce from "../../../shared/hooks/use-debounce";
 
 type TasksLayoutProps = {
   defaultViewMode?: ViewModes;
+  profileId?: string;
 };
 
 type TaskLayoutContextType = {
@@ -23,6 +24,7 @@ type TaskLayoutContextType = {
   viewMode: ViewModes;
   toggleViewMode(): void;
   isSearching: boolean;
+  profileId?: string;
 };
 
 const TaskLayoutContext = createContext<TaskLayoutContextType | undefined>(
@@ -32,9 +34,11 @@ const TaskLayoutContext = createContext<TaskLayoutContextType | undefined>(
 const TaskLayoutProvider = ({
   defaultViewMode,
   children,
+  profileId,
 }: {
   defaultViewMode: ViewModes;
   children: ReactNode;
+  profileId?: string;
 }) => {
   const [viewMode, setViewMode] = useState<ViewModes>(defaultViewMode);
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,6 +60,7 @@ const TaskLayoutProvider = ({
         viewMode,
         toggleViewMode,
         isSearching,
+        profileId,
       }}
     >
       {children}
@@ -73,21 +78,23 @@ export const useTaskLayout = (): TaskLayoutContextType => {
 
 export const TasksLayout = ({
   defaultViewMode = "kanban",
+  profileId,
 }: TasksLayoutProps) => {
   return (
-    <TaskLayoutProvider defaultViewMode={defaultViewMode}>
+    <TaskLayoutProvider defaultViewMode={defaultViewMode} profileId={profileId}>
       <TasksContent />
     </TaskLayoutProvider>
   );
 };
 
 const TasksContent = () => {
-  const { searchQuery } = useTaskLayout();
+  const { searchQuery, profileId } = useTaskLayout();
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   const { data, loading } = useGetKanbanTasksQuery({
     variables: {
       name: debouncedSearchQuery.length > 1 ? debouncedSearchQuery : undefined,
+      assigneeId: profileId,
     },
   });
 

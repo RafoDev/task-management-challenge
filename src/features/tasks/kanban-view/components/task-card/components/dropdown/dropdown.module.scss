@@ -28,6 +28,7 @@
   transition: color 0.05s;
 }
 .options {
+  z-index: 1000;
   border: 1px solid colors.$neutral-2;
   border-radius: 8px;
   box-sizing: border-box;

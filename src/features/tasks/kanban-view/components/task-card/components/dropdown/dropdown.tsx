@@ -5,13 +5,13 @@ import PenIcon from "/src/assets/icons/pen.svg?react";
 import ThreeDotsIcon from "/src/assets/icons/three-dots.svg?react";
 import TrashIcon from "/src/assets/icons/trash.svg?react";
 import { TaskForm, useTaskForm } from "../../../../../task-form/task-form";
-import { TaskCardType } from "../../../../kanban-view";
 import {
   DeleteTaskDialog,
   useConfirmationDialog,
 } from "../../../../../delete-task-dialog/delete-task-dialog";
+import { TaskFieldsFragment } from "../../../../../graphql/fragments/taskFields.generated";
 
-export const Dropdown = (props: TaskCardType) => {
+export const Dropdown = (props: TaskFieldsFragment) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const { isTaskFormOpen, openTaskForm, closeTaskForm } = useTaskForm();

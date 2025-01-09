@@ -1,11 +1,17 @@
-query GetKanbanTasks($name: String) {
-  todoTasks: tasks(input: { status: TODO, name: $name }) {
+query GetKanbanTasks($name: String, $assigneeId: String) {
+  todoTasks: tasks(
+    input: { status: TODO, name: $name, assigneeId: $assigneeId }
+  ) {
     ...TaskFields
   }
-  inProgressTasks: tasks(input: { status: IN_PROGRESS, name: $name }) {
+  inProgressTasks: tasks(
+    input: { status: IN_PROGRESS, name: $name, assigneeId: $assigneeId }
+  ) {
     ...TaskFields
   }
-  doneTasks: tasks(input: { status: DONE, name: $name }) {
+  doneTasks: tasks(
+    input: { status: DONE, name: $name, assigneeId: $assigneeId }
+  ) {
     ...TaskFields
   }
 }
