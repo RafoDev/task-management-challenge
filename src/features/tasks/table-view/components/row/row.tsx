@@ -11,7 +11,7 @@ export const Row = (props: TaskFieldsFragment) => {
   const formattedDueDate = formatDate(props.dueDate);
 
   return (
-    <article className={styles.container}>
+    <article className={`${styles.container}  animate__animated animate__slideInDown`}>
       <header className={styles.header}>
         <h4 className={`${styles.name} body-l-bold`}>
           {props.position} {props.name}
@@ -27,18 +27,8 @@ export const Row = (props: TaskFieldsFragment) => {
           </div>
           <span>Details</span>
         </div>
-        {/* <figure className={styles.options}>
-          <ThreeDotsIcon className={styles.optionsIcon} />
-        </figure> */}
       </header>
 
-      {/* <div className={styles.tags}>
-        {props.tags.map((tag) => (
-          <Tag key={tag} style={tag}>
-            <span className={"body-m-bold"}>{tag}</span>
-          </Tag>
-        ))}
-      </div> */}
       <Tags tags={props.tags} className={styles.tags} />
 
       <span className={`${styles.points} body-m-bold`}>{points} Points</span>
@@ -52,12 +42,6 @@ export const Row = (props: TaskFieldsFragment) => {
         />
         <span className={styles.assigneeName}>{props.assignee?.fullName}</span>
       </article>
-
-      {/* <div className={styles.content}>
-        <Tag style={"neutral"}>
-          <TimerIcon className={styles.timerIcon} />
-        </Tag>
-      </div> */}
 
       <span className={`${styles.dueDate} body-m-regular`}>
         {formattedDueDate}

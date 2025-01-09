@@ -13,12 +13,8 @@ type CellProps = {
 
 export const Cell = ({ title, tasks }: CellProps) => {
   const [open, setOpen] = useState(false);
-
   return (
-    <section
-      className={`${styles.container} ${open ? styles.containerOpen : ""}`}
-      onClick={() => setOpen(!open)}
-    >
+    <section className={`${styles.container} ${open ? styles.containerOpen : ""} `} onClick={() => setOpen(!open)}>
       <header className={styles.header}>
         <div className={styles.titleContainer}>
           <figure className={`${styles.iconContainer} ${styles.arrowDown}`}>
@@ -42,11 +38,15 @@ export const Cell = ({ title, tasks }: CellProps) => {
         </section>
       </header>
 
-      <section className={styles.taskContainer}>
-        {tasks.map((task) => (
-          <Row key={task.id} {...task} />
-        ))}
-      </section>
+      {open && (
+        <section
+          className={`${styles.taskContainer}`}
+        >
+          {tasks.map((task) => (
+            <Row key={task.id} {...task} />
+          ))}
+        </section>
+      )}
     </section>
   );
 };

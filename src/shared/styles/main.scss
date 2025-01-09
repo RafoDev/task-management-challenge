@@ -2,6 +2,10 @@
 @use "/src/shared/styles/variables/colors";
 @use "/src/shared/styles/typography";
 
+:root {
+  --animate-duration: 100ms;
+}
+
 body {
   margin: 0;
   font-family: fonts.$main-font;
