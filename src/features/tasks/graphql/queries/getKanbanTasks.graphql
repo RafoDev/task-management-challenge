@@ -1,11 +1,11 @@
-query GetKanbanTasks {
-  todoTasks: tasks(input: { status: TODO }) {
+query GetKanbanTasks($name: String) {
+  todoTasks: tasks(input: { status: TODO, name: $name }) {
     ...TaskFields
   }
-  inProgressTasks: tasks(input: { status: IN_PROGRESS }) {
+  inProgressTasks: tasks(input: { status: IN_PROGRESS, name: $name }) {
     ...TaskFields
   }
-  doneTasks: tasks(input: { status: DONE }) {
+  doneTasks: tasks(input: { status: DONE, name: $name }) {
     ...TaskFields
   }
 }

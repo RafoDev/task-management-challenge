@@ -4,11 +4,13 @@ import CleanIcon from "/src/assets/icons/clean.svg?react";
 import styles from "./searchbar.module.scss";
 import { Profile } from "./components";
 import { useState, useEffect, useRef } from "react";
+import { useTaskLayout } from "../../../components/layouts/tasks-layout/tasks-layout";
 
 export const SearchBar = () => {
   const [showInput, setShowInput] = useState(false);
   const [animateInput, setAnimateInput] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  // const [inputValue, setInputValue] = useState("");
+  const { searchQuery, setSearchQuery, isSearching } = useTaskLayout();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onShowInput = () => {
@@ -26,12 +28,12 @@ export const SearchBar = () => {
   }, [showInput]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    setSearchQuery(event.target.value);
   };
 
   const clearInput = () => {
     inputRef?.current?.focus();
-    setInputValue("");
+    setSearchQuery("");
   };
 
   return (
@@ -57,12 +59,12 @@ export const SearchBar = () => {
           className={`${styles.input} body-m-regular ${
             animateInput ? styles.inputShow : ""
           }`}
-          value={inputValue}
+          value={searchQuery}
           onChange={handleInputChange}
         />
         <div
           className={`${styles.cleanIconContainer} ${
-            inputValue.length > 0 && showInput
+            searchQuery.length > 0 && showInput
               ? styles.cleanIconContainerShow
               : ""
           }`}

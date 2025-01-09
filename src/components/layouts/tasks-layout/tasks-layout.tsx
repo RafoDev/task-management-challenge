@@ -10,14 +10,19 @@ import {
 } from "react";
 import { ViewModes } from "../../../features/tasks/types";
 import { Tasks } from "../../../features/tasks/tasks";
+import { useGetKanbanTasksQuery } from "../../../features/tasks/graphql/queries/getKanbanTasks.generated";
+import useDebounce from "../../../shared/hooks/use-debounce";
 
 type TasksLayoutProps = {
   defaultViewMode?: ViewModes;
 };
 
 type TaskLayoutContextType = {
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   viewMode: ViewModes;
   toggleViewMode(): void;
+  isSearching: boolean;
 };
 
 const TaskLayoutContext = createContext<TaskLayoutContextType | undefined>(
@@ -32,6 +37,8 @@ const TaskLayoutProvider = ({
   children: ReactNode;
 }) => {
   const [viewMode, setViewMode] = useState<ViewModes>(defaultViewMode);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     setViewMode(defaultViewMode);
@@ -42,27 +49,17 @@ const TaskLayoutProvider = ({
   };
 
   return (
-    <TaskLayoutContext.Provider value={{ viewMode, toggleViewMode }}>
+    <TaskLayoutContext.Provider
+      value={{
+        searchQuery,
+        setSearchQuery,
+        viewMode,
+        toggleViewMode,
+        isSearching,
+      }}
+    >
       {children}
     </TaskLayoutContext.Provider>
-  );
-};
-
-export const TasksLayout = ({
-  defaultViewMode = "kanban",
-}: TasksLayoutProps) => {
-  return (
-    <TaskLayoutProvider defaultViewMode={defaultViewMode}>
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <SearchBar />
-        </header>
-        <Topbar />
-        <div className={styles.content}>
-          <Tasks />
-        </div>
-      </div>
-    </TaskLayoutProvider>
   );
 };
 
@@ -72,4 +69,37 @@ export const useTaskLayout = (): TaskLayoutContextType => {
     throw new Error("useTaskLayout must be used within a TaskLayoutProvider");
   }
   return context;
+};
+
+export const TasksLayout = ({
+  defaultViewMode = "kanban",
+}: TasksLayoutProps) => {
+  return (
+    <TaskLayoutProvider defaultViewMode={defaultViewMode}>
+      <TasksContent />
+    </TaskLayoutProvider>
+  );
+};
+
+const TasksContent = () => {
+  const { searchQuery } = useTaskLayout();
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+
+  const { data, loading } = useGetKanbanTasksQuery({
+    variables: {
+      name: debouncedSearchQuery.length > 1 ? debouncedSearchQuery : undefined,
+    },
+  });
+
+  return (
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <SearchBar />
+      </header>
+      <Topbar />
+      <div className={styles.content}>
+        <Tasks tasks={data} />
+      </div>
+    </div>
+  );
 };
