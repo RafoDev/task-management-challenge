@@ -16,17 +16,6 @@ export const useConfirmationDialog = () => {
   };
 };
 
-type TaskRef = {
-  id: string;
-  [key: string]: unknown;
-};
-
-type CacheFields = {
-  tasks: TaskRef[];
-};
-
-type ReadFieldFunction = <T>(fieldName: string, taskRef: TaskRef) => T;
-
 type DeleteTaskDialogProps = {
   taskId: string;
   taskName: string;

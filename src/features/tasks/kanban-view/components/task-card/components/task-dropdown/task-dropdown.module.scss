@@ -3,14 +3,19 @@
 .container {
   position: relative;
 }
+
 .trigger {
+  padding: 4px;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border: none;
   display: flex;
+  justify-content: center;
   align-items: center;
   background-color: transparent;
-  border: none;
-  border-radius: 4px;
+  border-radius: 100%;
   cursor: pointer;
-  transition: background-color 0.05s;
   &:hover {
     background-color: colors.$neutral-2;
     .icon {
@@ -19,6 +24,11 @@
   }
   &:focus {
     outline: none;
+  }
+  .icon {
+    width: 100%;
+    color: colors.$neutral-2;
+    transition: color 0.05s;
   }
 }
 .icon {

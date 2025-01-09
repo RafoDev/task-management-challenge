@@ -1,7 +1,7 @@
 import { User } from "../../../types";
 import styles from "./avatar.module.scss";
 
-type Size = "s" | "m";
+type Size = "s" | "m" | "l";
 type AvatarType = Pick<User, "id" | "fullName" | "avatar"> & {
   size?: Size;
 };
@@ -9,6 +9,7 @@ type AvatarType = Pick<User, "id" | "fullName" | "avatar"> & {
 const styleMapping: Record<Size, string> = {
   s: styles["container-s"],
   m: styles["container-m"],
+  l: styles["container-l"],
 };
 
 const placeholder = "/src/assets/images/user-placeholder.png";

@@ -29,8 +29,10 @@ export const TaskDropdown = (props: TaskFieldsFragment) => {
   return (
     <>
       <Dropdown>
-        <Dropdown.Trigger>
-          <ThreeDotsIcon className={styles.icon} />
+        <Dropdown.Trigger asChild>
+          <button className={styles.trigger}>
+            <ThreeDotsIcon className={styles.icon} />
+          </button>
         </Dropdown.Trigger>
         <Dropdown.Content>
           <Dropdown.Item onClick={handleEditClick}>

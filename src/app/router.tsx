@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { DashboardLayout } from "../components/layouts/dashboard-layout/dashboard-layout";
 import { TasksLayout } from "../components/layouts/tasks-layout/tasks-layout";
 import { useProfile } from "../features/navigation/searchbar/components/profile/context/profile-context";
+import { ProfileInfo } from "../features/navigation/searchbar/components/profile/profile-info/profile-info";
 
 export const AppRouter = () => {
   const { profile } = useProfile();
@@ -20,6 +21,7 @@ export const AppRouter = () => {
             <TasksLayout defaultViewMode="table" profileId={profile?.id} />
           }
         />
+        <Route path="my-profile" element={<ProfileInfo />} />
       </Route>
     </Routes>
   );

@@ -1,0 +1,13 @@
+@use "/src/shared/styles/variables/colors";
+
+.trigger {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  color: colors.$neutral-2;
+  transition: color 0.05s;
+}

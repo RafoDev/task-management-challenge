@@ -10,7 +10,8 @@ export const SearchBar = () => {
   const [showInput, setShowInput] = useState(false);
   const [animateInput, setAnimateInput] = useState(false);
   // const [inputValue, setInputValue] = useState("");
-  const { searchQuery, setSearchQuery, isSearching } = useTaskLayout();
+  // const { searchQuery, setSearchQuery, isSearching } = useTaskLayout();
+  const { searchQuery, setSearchQuery} = useTaskLayout();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onShowInput = () => {

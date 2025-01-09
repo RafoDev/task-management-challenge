@@ -1,0 +1,13 @@
+@use "/src/shared/styles/variables/colors";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.label {
+  color: colors.$neutral-2;
+}
+.key {
+  color: colors.$neutral-1;
+}

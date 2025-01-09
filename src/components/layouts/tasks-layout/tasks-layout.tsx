@@ -23,7 +23,7 @@ type TaskLayoutContextType = {
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   viewMode: ViewModes;
   toggleViewMode(): void;
-  isSearching: boolean;
+  // isSearching: boolean;
   profileId?: string;
 };
 
@@ -42,7 +42,7 @@ const TaskLayoutProvider = ({
 }) => {
   const [viewMode, setViewMode] = useState<ViewModes>(defaultViewMode);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
+  // const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     setViewMode(defaultViewMode);
@@ -59,7 +59,7 @@ const TaskLayoutProvider = ({
         setSearchQuery,
         viewMode,
         toggleViewMode,
-        isSearching,
+        // isSearching,
         profileId,
       }}
     >
@@ -105,7 +105,7 @@ const TasksContent = () => {
       </header>
       <Topbar />
       <div className={styles.content}>
-        <Tasks tasks={data} />
+        {!loading ? <Tasks tasks={data} /> : <span>loading...</span>}
       </div>
     </div>
   );
