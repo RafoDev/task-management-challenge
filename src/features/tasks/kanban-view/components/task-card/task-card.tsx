@@ -6,8 +6,8 @@ import CommentsIcon from "/src/assets/icons/comments.svg?react";
 import { Avatar } from "../../../../../components/ui";
 import { Tag } from "../../../../../components/ui/tag/tag";
 import { formatDate, formatEstimatedPoints } from "../../../utils";
-import { Dropdown } from "./components/dropdown/dropdown";
 import { TaskFieldsFragment } from "../../../graphql/fragments/taskFields.generated";
+import { TaskDropdown } from "./components/task-dropdown/task-dropdown";
 
 export const TaskCard = (props: TaskFieldsFragment) => {
   const points = formatEstimatedPoints(props.pointEstimate);
@@ -20,7 +20,7 @@ export const TaskCard = (props: TaskFieldsFragment) => {
         <h4 className={`${styles.name} ${animationClass} body-l-bold`}>
           {props.name}
         </h4>
-        <Dropdown {...props} />
+        <TaskDropdown {...props} />
       </header>
 
       <div className={`${styles.content} ${animationClass}`}>
