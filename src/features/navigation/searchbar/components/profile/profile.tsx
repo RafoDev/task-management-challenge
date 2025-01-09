@@ -1,10 +1,9 @@
 import { Avatar } from "../../../../../components/ui";
-import { useGetProfileQuery } from "./getProfile.generated";
+import { useProfile } from "./context/profile-context";
 
 export const Profile = () => {
-  const { data } = useGetProfileQuery();
+  const { profile, isLoading } = useProfile();
 
-  const profile = data?.profile;
   return (
     <Avatar
       id={profile?.id || ""}
