@@ -96,7 +96,7 @@ const DialogContent = ({ children, className }: ContentProps) => {
 
   return createPortal(
     <div className={styles.overlay} onClick={handleOverlayClick}>
-      <div className={`${styles.dialog} ${className}`} ref={dialogRef}>
+      <div className={`${styles.dialog} ${className} animate__animated animate__zoomIn animate__faster`} ref={dialogRef}>
         {children}
       </div>
     </div>,
