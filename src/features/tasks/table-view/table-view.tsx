@@ -1,31 +1,17 @@
-import { Status } from "../../../types";
+import { GetKanbanTasksQuery } from "../graphql/queries/getKanbanTasks.generated";
 import { Cell } from "./components/cell/cell";
 import { Header } from "./components/header/header";
 import styles from "./table-view.module.scss";
 
-const cells: { title: string; status: keyof typeof Status }[] = [
-  {
-    title: "Working",
-    status: "Todo",
-  },
-  {
-    title: "In Progress",
-    status: "InProgress",
-  },
-  {
-    title: "Completed",
-    status: "Done",
-  },
-];
+export type TableViewProps = { tasks: GetKanbanTasksQuery | undefined };
 
-export const TableView = () => {
+export const TableView = ({ tasks }: TableViewProps) => {
   return (
     <div className={styles.container}>
       <Header />
-      {cells.map(({ title, status }) => (
-        <Cell key={title} title={title} status={status} />
-      ))}
-
+      <Cell title="Working" tasks={tasks?.todoTasks ?? []} />
+      <Cell title="In Progress" tasks={tasks?.inProgressTasks ?? []} />
+      <Cell title="Done" tasks={tasks?.doneTasks ?? []} />
     </div>
   );
 };

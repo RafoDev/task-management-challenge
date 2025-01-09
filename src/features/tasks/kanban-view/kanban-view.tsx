@@ -1,22 +1,15 @@
-import { GetKanbanTasksQuery, useGetKanbanTasksQuery } from "../graphql/queries/getKanbanTasks.generated";
+import { GetKanbanTasksQuery } from "../graphql/queries/getKanbanTasks.generated";
 import { Kanban } from "./components/kanban/kanban";
 import styles from "./kanban-view.module.scss";
 
-export type TaskCardType = GetKanbanTasksQuery[
-  | "inProgressTasks"
-  | "doneTasks"
-  | "todoTasks"][number];
+export type KanbanViewProps = { tasks: GetKanbanTasksQuery | undefined };
 
-
-export const KanbanView = () => {
-  const { data, loading } = useGetKanbanTasksQuery();
-  if (loading) return <span>loading</span>;
-
+export const KanbanView = ({ tasks }: KanbanViewProps) => {
   return (
     <div className={styles.container}>
-      <Kanban title="Working" tasks={data?.todoTasks ?? []} />
-      <Kanban title="In Progress" tasks={data?.inProgressTasks ?? []} />
-      <Kanban title="Done" tasks={data?.doneTasks ?? []} />
+      <Kanban title="Working" tasks={tasks?.todoTasks ?? []} />
+      <Kanban title="In Progress" tasks={tasks?.inProgressTasks ?? []} />
+      <Kanban title="Done" tasks={tasks?.doneTasks ?? []} />
     </div>
   );
 };

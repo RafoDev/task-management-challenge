@@ -4,11 +4,9 @@ import CommentsIcon from "/src/assets/icons/comments.svg?react";
 import { formatDate } from "../../../utils/format-date";
 import { Avatar, Tags } from "../../../../../components/ui";
 import { formatEstimatedPoints } from "../../../utils";
-import { GetAllTasksQuery } from "../../../graphql/queries/getTasks.generated";
+import { TaskFieldsFragment } from "../../../graphql/fragments/taskFields.generated";
 
-type RowType = GetAllTasksQuery["tasks"][number];
-
-export const Row = (props: RowType) => {
+export const Row = (props: TaskFieldsFragment) => {
   const points = formatEstimatedPoints(props.pointEstimate);
   const formattedDueDate = formatDate(props.dueDate);
 

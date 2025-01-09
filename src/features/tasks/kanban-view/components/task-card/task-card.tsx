@@ -7,9 +7,9 @@ import { Avatar } from "../../../../../components/ui";
 import { Tag } from "../../../../../components/ui/tag/tag";
 import { formatDate, formatEstimatedPoints } from "../../../utils";
 import { Dropdown } from "./components/dropdown/dropdown";
-import { TaskCardType } from "../../kanban-view";
+import { TaskFieldsFragment } from "../../../graphql/fragments/taskFields.generated";
 
-export const TaskCard = (props: TaskCardType) => {
+export const TaskCard = (props: TaskFieldsFragment) => {
   const points = formatEstimatedPoints(props.pointEstimate);
   const formattedDueDate = formatDate(props.dueDate);
 

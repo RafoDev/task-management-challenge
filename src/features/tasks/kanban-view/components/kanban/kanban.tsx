@@ -2,12 +2,13 @@ import { TaskFieldsFragment } from "../../../graphql/fragments/taskFields.genera
 import { TaskCard } from "../task-card/task-card";
 import styles from "./kanban.module.scss";
 
-type KanbanType = {
+type KanbanProps = {
   title: string;
   tasks: TaskFieldsFragment[];
 };
 
-export const Kanban = ({ title, tasks = [] }: KanbanType) => {
+export const Kanban = ({ title, tasks = [] }: KanbanProps) => {
+  
   return (
     <section className={styles.container}>
       <h2 className={`${styles.title} body-l-bold`}>

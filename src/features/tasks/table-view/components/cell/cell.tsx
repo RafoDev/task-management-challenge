@@ -1,25 +1,18 @@
 import { useState } from "react";
-import { Status } from "../../../../../types";
 import { Row } from "../row/row";
 import styles from "./cell.module.scss";
 import ArrowDownIcon from "/src/assets/icons/arrow-down.svg?react";
 import PlusIcon from "/src/assets/icons/plus.svg?react";
 import ThreeDots from "/src/assets/icons/three-dots.svg?react";
-import { useGetAllTasksQuery } from "../../../graphql/queries/getTasks.generated";
+import { TaskFieldsFragment } from "../../../graphql/fragments/taskFields.generated";
 
-type CellType = {
+type CellProps = {
   title: string;
-  status: keyof typeof Status;
+  tasks: TaskFieldsFragment[];
 };
 
-export const Cell = ({ title, status }: CellType) => {
-  const { data, loading } = useGetAllTasksQuery({
-    variables: { status: Status[status] },
-  });
-
+export const Cell = ({ title, tasks }: CellProps) => {
   const [open, setOpen] = useState(false);
-
-  if (loading) return <span>loading...</span>;
 
   return (
     <section
@@ -35,7 +28,7 @@ export const Cell = ({ title, status }: CellType) => {
           <h2 className={`${styles.title} body-l-bold`}>
             {title}{" "}
             <span className={`${styles.count} body-l-bold`}>
-              ({data?.tasks.length})
+              ({tasks.length})
             </span>
           </h2>
         </div>
@@ -50,7 +43,7 @@ export const Cell = ({ title, status }: CellType) => {
       </header>
 
       <section className={styles.taskContainer}>
-        {data?.tasks.map((task) => (
+        {tasks.map((task) => (
           <Row key={task.id} {...task} />
         ))}
       </section>
