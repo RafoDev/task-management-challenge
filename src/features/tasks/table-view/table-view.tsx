@@ -1,9 +1,9 @@
-import { GetKanbanTasksQuery } from "../graphql/queries/getKanbanTasks.generated";
+import { GetTasksQuery } from "../graphql/queries/getTasks.generated";
 import { Cell } from "./components/cell/cell";
 import { Header } from "./components/header/header";
 import styles from "./table-view.module.scss";
 
-export type TableViewProps = { tasks: GetKanbanTasksQuery | undefined };
+export type TableViewProps = { tasks: GetTasksQuery | undefined };
 
 export const TableView = ({ tasks }: TableViewProps) => {
   return (

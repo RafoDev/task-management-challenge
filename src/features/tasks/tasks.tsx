@@ -1,12 +1,12 @@
 import { useTaskLayout } from "../../components/layouts/tasks-layout/tasks-layout";
-import { GetKanbanTasksQuery } from "./graphql/queries/getKanbanTasks.generated";
+import { GetTasksQuery } from "./graphql/queries/getTasks.generated";
 import { KanbanView } from "./kanban-view/kanban-view";
 import { TableView } from "./table-view/table-view";
 
 export const Tasks = ({
   tasks,
 }: {
-  tasks: GetKanbanTasksQuery | undefined;
+  tasks: GetTasksQuery | undefined;
 }) => {
   const { viewMode } = useTaskLayout();
 
