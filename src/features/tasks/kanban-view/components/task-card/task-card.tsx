@@ -1,3 +1,6 @@
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { TaskFieldsFragment } from "../../../graphql/fragments/taskFields.generated";
 import styles from "./task-card.module.scss";
 import TimerIcon from "/src/assets/icons/timer.svg?react";
 import AttachIcon from "/src/assets/icons/attach.svg?react";
@@ -6,16 +9,50 @@ import CommentsIcon from "/src/assets/icons/comments.svg?react";
 import { Avatar } from "../../../../../components/ui";
 import { Tag } from "../../../../../components/ui/tag/tag";
 import { formatDate, formatEstimatedPoints } from "../../../utils";
-import { TaskFieldsFragment } from "../../../graphql/fragments/taskFields.generated";
 import { TaskDropdown } from "./components/task-dropdown/task-dropdown";
 
-export const TaskCard = (props: TaskFieldsFragment) => {
+type TaskCardProps = TaskFieldsFragment & {
+  index: number;
+  containerId: string;
+};
+
+export const TaskCard = (props: TaskCardProps) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: props.id,
+    data: {
+      type: "task",
+      task: props,
+      containerId: props.containerId,
+      position: props.index,
+    },
+  });
+
   const points = formatEstimatedPoints(props.pointEstimate);
   const formattedDueDate = formatDate(props.dueDate);
   const animationClass = "animate__animated animate__fadeIn";
 
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
   return (
-    <article className={`${styles.container}`}>
+    <article
+      ref={setNodeRef}
+      style={style}
+      className={`${styles.container}`}
+      data-task-id={props.id}
+      {...attributes}
+      {...listeners}
+    >
       <header className={`${styles.header}`}>
         <h4 className={`${styles.name} ${animationClass} body-l-bold`}>
           {props.name}
