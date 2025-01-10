@@ -64,60 +64,59 @@ export const TaskCard = (props: TaskCardProps) => {
       className={`${styles.container}`}
       data-task-id={props.id}
     >
-        <header className={`${styles.header}`} {...dragAttributes}>
-          <h4 className={`${styles.name} ${animationClass} body-l-bold`}>
-            {props.name}
-          </h4>
-        </header>
-        {!props.isDragOverlay && (
-          <div className={styles.dropdown}>
-            <TaskDropdown {...props} />
-          </div>
-        )}
+      <header className={`${styles.header}`} {...dragAttributes}>
+        <h4 className={`${styles.name} ${animationClass} body-l-bold`}>
+          {props.name}
+        </h4>
+      </header>
+      {!props.isDragOverlay && (
+        <div className={styles.dropdown}>
+          <TaskDropdown {...props} />
+        </div>
+      )}
 
-        <div
-          className={`${styles.content} ${animationClass}`}
-          {...dragAttributes}
-        >
-          <span className={`${styles.points} body-m-bold`}>{points} Pts</span>
-          <Tag style={"neutral"}>
-            <TimerIcon className={styles.timerIcon} />
-            <span className={`${styles.dueDate} body-m-bold`}>
-              {formattedDueDate}
-            </span>
+      <div
+        className={`${styles.content} ${animationClass}`}
+        {...dragAttributes}
+      >
+        <span className={`${styles.points} body-m-bold`}>{points} Pts</span>
+        <Tag style={"neutral"}>
+          <TimerIcon className={styles.timerIcon} />
+          <span className={`${styles.dueDate} body-m-bold`}>
+            {formattedDueDate}
+          </span>
+        </Tag>
+      </div>
+
+      <div className={`${styles.tags} ${animationClass}`} {...dragAttributes}>
+        {props.tags.map((tag) => (
+          <Tag key={tag} style={tag}>
+            <span className={"body-m-bold"}>{tag}</span>
           </Tag>
-        </div>
+        ))}
+      </div>
 
-        <div className={`${styles.tags} ${animationClass}`} {...dragAttributes}>
-          {props.tags.map((tag) => (
-            <Tag key={tag} style={tag}>
-              <span className={"body-m-bold"}>{tag}</span>
-            </Tag>
-          ))}
-        </div>
-
-        <footer
-          className={`${styles.footer} ${animationClass}`}
-          {...dragAttributes}
-        >
-          <Avatar
-            id={props.assignee?.id || ""}
-            avatar={props.assignee?.avatar}
-            fullName={props.assignee?.fullName || ""}
-            size="s"
-          />
-          <div className={styles.reactions}>
-            <AttachIcon className={styles.reactionIcon} />
-            <div className={styles.connection}>
-              <span className="body-m-bold">5</span>
-              <ConnectionsIcon className={styles.reactionIcon} />
-            </div>
-            <div className={styles.comments}>
-              <span className="body-m-bold">5</span>
-              <CommentsIcon className={styles.reactionIcon} />
-            </div>
+      <footer
+        className={`${styles.footer} ${animationClass}`}
+        {...dragAttributes}
+      >
+        <Avatar
+          avatar={props.assignee?.avatar || ""}
+          fullName={props.assignee?.fullName || ""}
+          size="s"
+        />
+        <div className={styles.reactions}>
+          <AttachIcon className={styles.reactionIcon} />
+          <div className={styles.connection}>
+            <span className="body-m-bold">5</span>
+            <ConnectionsIcon className={styles.reactionIcon} />
           </div>
-        </footer>
+          <div className={styles.comments}>
+            <span className="body-m-bold">5</span>
+            <CommentsIcon className={styles.reactionIcon} />
+          </div>
+        </div>
+      </footer>
     </article>
   );
 };

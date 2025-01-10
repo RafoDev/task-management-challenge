@@ -1,10 +1,8 @@
-import { User } from "../../../types";
+import { useState } from "react";
 import styles from "./avatar.module.scss";
+import User from "/src/assets/images/user-placeholder.png";
 
 type Size = "s" | "m" | "l";
-type AvatarType = Pick<User, "id" | "fullName" | "avatar"> & {
-  size?: Size;
-};
 
 const styleMapping: Record<Size, string> = {
   s: styles["container-s"],
@@ -12,21 +10,30 @@ const styleMapping: Record<Size, string> = {
   l: styles["container-l"],
 };
 
-const placeholder = "/src/assets/images/user-placeholder.png";
+type AvatarProps = {
+  avatar?: string;
+  fullName: string;
+  size?: Size;
+};
+export const Avatar = ({ avatar, fullName, size = "s" }: AvatarProps) => {
+  const [hasError, setHasError] = useState(false);
 
-export const Avatar = ({ avatar, fullName, size = "s" }: AvatarType) => {
-  const handleImageError = (event: React.SyntheticEvent<HTMLImageElement>) => {
-    event.currentTarget.src = placeholder;
+  const handleImageError = () => {
+    setHasError(true);
   };
 
   return (
     <figure className={`${styles.container} ${styleMapping[size]}`}>
-      <img
-        src={avatar || placeholder}
-        alt={fullName}
-        className={styles.img}
-        onError={handleImageError}
-      />
+      {!hasError && avatar ? (
+        <img
+          src={avatar}
+          alt={fullName}
+          className={styles.img}
+          onError={handleImageError}
+        />
+      ) : (
+        <img src={User} alt={fullName} className={styles.img} />
+      )}
     </figure>
   );
 };

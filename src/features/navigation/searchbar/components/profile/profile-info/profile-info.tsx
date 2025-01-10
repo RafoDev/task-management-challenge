@@ -22,8 +22,8 @@ export const ProfileInfo = () => {
     },
     {
       label: "ID",
-      value: data?.profile.id
-    }
+      value: data?.profile.id,
+    },
   ];
 
   return (
@@ -35,9 +35,8 @@ export const ProfileInfo = () => {
         <article className={`${styles.section} ${styles.nameSection}`}>
           <div className={styles.avatar}>
             <Avatar
-              id={data?.profile?.id || ""}
               fullName={data?.profile?.fullName || ""}
-              avatar={data?.profile?.avatar}
+              avatar={data?.profile?.avatar || ""}
               size="l"
             />
           </div>

@@ -16,9 +16,8 @@ export const Profile = () => {
       <Dropdown.Trigger asChild>
         <button className={styles.trigger}>
           <Avatar
-            id={profile?.id || ""}
             fullName={profile?.fullName || ""}
-            avatar={profile?.avatar}
+            avatar={profile?.avatar || ""}
             size="m"
           />
         </button>

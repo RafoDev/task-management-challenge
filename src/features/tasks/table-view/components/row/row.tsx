@@ -11,7 +11,9 @@ export const Row = (props: TaskFieldsFragment) => {
   const formattedDueDate = formatDate(props.dueDate);
 
   return (
-    <article className={`${styles.container}  animate__animated animate__slideInDown`}>
+    <article
+      className={`${styles.container}  animate__animated animate__slideInDown`}
+    >
       <header className={styles.header}>
         <h4 className={`${styles.name} body-l-bold`}>
           {props.position} {props.name}
@@ -35,8 +37,7 @@ export const Row = (props: TaskFieldsFragment) => {
 
       <article className={styles.assignee}>
         <Avatar
-          id={props.assignee?.id || ""}
-          avatar={props.assignee?.avatar}
+          avatar={props.assignee?.avatar || ""}
           fullName={props.assignee?.fullName || ""}
           size="s"
         />
