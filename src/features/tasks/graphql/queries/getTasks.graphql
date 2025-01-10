@@ -14,4 +14,14 @@ query GetTasks($name: String, $assigneeId: String) {
   ) {
     ...TaskFields
   }
+  backlogTasks: tasks(
+    input: { status: BACKLOG, name: $name, assigneeId: $assigneeId }
+  ) {
+    ...TaskFields
+  }
+  cancelledTasks: tasks(
+    input: { status: CANCELLED, name: $name, assigneeId: $assigneeId }
+  ) {
+    ...TaskFields
+  }
 }

@@ -14,7 +14,7 @@ export const KanbanView = ({ tasks }: KanbanViewProps) => {
     overContainer,
     handleDragStart,
     handleDragOver,
-    handleDragEnd
+    handleDragEnd,
   } = useKanbanDrag(tasks, profile?.id);
 
   const activeTask = activeId ? findTaskById(tasks, activeId) : null;
@@ -27,6 +27,12 @@ export const KanbanView = ({ tasks }: KanbanViewProps) => {
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
       >
+        <Kanban
+          id="Backlog"
+          title="Backlog"
+          tasks={tasks?.backlogTasks ?? []}
+          isReceiving={overContainer === "Backlog"}
+        />
         <Kanban
           id="Working"
           title="Working"
@@ -44,6 +50,13 @@ export const KanbanView = ({ tasks }: KanbanViewProps) => {
           title="Done"
           tasks={tasks?.doneTasks ?? []}
           isReceiving={overContainer === "Done"}
+        />
+
+        <Kanban
+          id="Cancelled"
+          title="Cancelled"
+          tasks={tasks?.cancelledTasks ?? []}
+          isReceiving={overContainer === "Cancelled"}
         />
 
         <DragOverlay>

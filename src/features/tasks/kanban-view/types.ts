@@ -9,4 +9,6 @@ export const statusMap: Record<string, Status> = {
   Working: Status.Todo,
   "In Progress": Status.InProgress,
   Done: Status.Done,
+  Backlog: Status.Backlog,
+  Cancelled: Status.Cancelled,
 };

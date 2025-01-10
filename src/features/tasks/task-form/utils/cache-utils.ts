@@ -1,6 +1,9 @@
 import { ApolloCache } from "@apollo/client";
 import { TaskFieldsFragment } from "../../graphql/fragments/taskFields.generated";
-import { GetTasksDocument, GetTasksQuery } from "../../graphql/queries/getTasks.generated";
+import {
+  GetTasksDocument,
+  GetTasksQuery,
+} from "../../graphql/queries/getTasks.generated";
 import { Status } from "../../../../types";
 
 export const updateCacheAfterCreate = (
@@ -56,14 +59,20 @@ export const updateCacheAfterUpdate = (
     if (!shouldIncludeTask) {
       return {
         ...queryData,
+        backlogTasks: removeFromList(queryData.backlogTasks),
         todoTasks: removeFromList(queryData.todoTasks),
         inProgressTasks: removeFromList(queryData.inProgressTasks),
         doneTasks: removeFromList(queryData.doneTasks),
+        cancelledTasks: removeFromList(queryData.cancelledTasks),
       };
     }
 
     return {
       ...queryData,
+      backlogTasks:
+        updatedTask.status === Status.Backlog
+          ? [...removeFromList(queryData.backlogTasks), updatedTask]
+          : removeFromList(queryData.backlogTasks),
       todoTasks:
         updatedTask.status === Status.Todo
           ? [...removeFromList(queryData.todoTasks), updatedTask]
@@ -76,6 +85,10 @@ export const updateCacheAfterUpdate = (
         updatedTask.status === Status.Done
           ? [...removeFromList(queryData.doneTasks), updatedTask]
           : removeFromList(queryData.doneTasks),
+      cancelledTasks:
+        updatedTask.status === Status.Cancelled
+          ? [...removeFromList(queryData.cancelledTasks), updatedTask]
+          : removeFromList(queryData.cancelledTasks),
     };
   };
 

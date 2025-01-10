@@ -45,11 +45,13 @@ export const Kanban = ({ id, title, tasks = [], isReceiving }: KanbanProps) => {
           {tasks.map((task, index) => (
             <TaskCard key={task.id} {...task} index={index} containerId={id} />
           ))}
-          {/* {(tasks.length === 0 || isReceiving) && (
+          {tasks.length === 0 && (
             <div className={styles.emptyState}>
-              <span>Drop here</span>
+              <span className={styles.emptyMessage}>
+                No tasks yet. Create one!
+              </span>
             </div>
-          )} */}
+          )}
         </section>
       </SortableContext>
     </section>

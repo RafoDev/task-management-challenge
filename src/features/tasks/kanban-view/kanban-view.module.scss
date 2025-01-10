@@ -1,15 +1,14 @@
 .container {
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(3, minmax(348px, max-content));
+  grid-template-columns: repeat(5, minmax(348px, max-content));
   gap: 2rem;
   width: 100vw;
   height: calc(100vh - 112px);
   overflow: auto;
   padding: 20px 1rem 1rem 1rem;
 }
-.column {
-}
+
 .title {
   margin: 0;
   margin-bottom: 1rem;
@@ -26,8 +25,7 @@
     height: auto;
     padding: 0;
   }
-  .column {
-  }
+
   .title {
     margin: 0;
     margin-bottom: 8px;

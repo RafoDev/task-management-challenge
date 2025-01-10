@@ -1,3 +1,18 @@
-$main-font: sans-serif;
-$main-font-weight-bold: bold;
+$main-font-weight-bold: 500;
 $main-font-weight-regular: 400;
+
+@font-face {
+  font-family: "SFProDisplay";
+  src: url("../../../assets/fonts/SFPRODISPLAYREGULAR.OTF") format("opentype");
+  font-weight: $main-font-weight-bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SFProDisplay";
+  src: url("../../../assets/fonts/SFPRODISPLAYREGULAR.OTF") format("opentype");
+  font-weight: $main-font-weight-regular;
+  font-display: swap;
+}
+
+$main-font: "SFProDisplay";

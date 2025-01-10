@@ -18,6 +18,12 @@
 .isOver {
   border: 1px dashed colors.$neutral-3;
 }
+.emptyState {
+  box-sizing: border-box;
+  padding: 1rem;
+  background-color: colors.$neutral-4;
+  border-radius: 8px;
+}
 
 @media (min-width: 768px) {
   .column {

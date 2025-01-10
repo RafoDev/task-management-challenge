@@ -8,9 +8,13 @@ export const findTaskById = (
 ): TaskFieldsFragment | null => {
   if (!tasks) return null;
   return (
-    [...tasks.todoTasks, ...tasks.inProgressTasks, ...tasks.doneTasks].find(
-      (task) => task.id === taskId
-    ) || null
+    [
+      ...tasks.backlogTasks,
+      ...tasks.todoTasks,
+      ...tasks.inProgressTasks,
+      ...tasks.doneTasks,
+      ...tasks.cancelledTasks,
+    ].find((task) => task.id === taskId) || null
   );
 };
 
@@ -26,6 +30,10 @@ export const getTasksByStatus = (
       return tasks.inProgressTasks;
     case Status.Done:
       return tasks.doneTasks;
+    case Status.Backlog:
+      return tasks.backlogTasks;
+    case Status.Cancelled:
+      return tasks.cancelledTasks;
     default:
       return [];
   }
