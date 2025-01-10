@@ -4,14 +4,12 @@ import CleanIcon from "/src/assets/icons/clean.svg?react";
 import styles from "./searchbar.module.scss";
 import { Profile } from "./components";
 import { useState, useEffect, useRef } from "react";
-import { useTaskLayout } from "../../../components/layouts/tasks-layout/tasks-layout";
+import { useTasks } from "../../tasks/context/tasks-context";
 
 export const SearchBar = () => {
   const [showInput, setShowInput] = useState(false);
   const [animateInput, setAnimateInput] = useState(false);
-  // const [inputValue, setInputValue] = useState("");
-  // const { searchQuery, setSearchQuery, isSearching } = useTaskLayout();
-  const { searchQuery, setSearchQuery} = useTaskLayout();
+  const { searchQuery, setSearchQuery} = useTasks();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onShowInput = () => {

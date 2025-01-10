@@ -1,12 +1,12 @@
 import GridIcon from "/src/assets/icons/dashboard.svg?react";
 import ListIcon from "/src/assets/icons/list.svg?react";
 import styles from "./topbar.module.scss";
-import { useTaskLayout } from "../../../components/layouts/tasks-layout/tasks-layout";
 import PlusIcon from "/src/assets/icons/plus.svg?react";
 import { TaskForm, useTaskForm } from "../task-form";
+import { useTasks } from "../context/tasks-context";
 
 export const Topbar = () => {
-  const { toggleViewMode, viewMode } = useTaskLayout();
+  const { toggleViewMode, viewMode } = useTasks();
   const { isTaskFormOpen, openTaskForm, closeTaskForm } = useTaskForm();
 
   return (
@@ -39,7 +39,7 @@ export const Topbar = () => {
         </figure>
         <span className={`${styles.label} body-s-regular`}>Dashboard</span>
       </button>
-      
+
       <button
         className={`${styles.button} ${styles.create}`}
         onClick={() => openTaskForm()}

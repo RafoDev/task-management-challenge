@@ -63,8 +63,7 @@
 
 .taskContainer {
   box-sizing: border-box;
-  // height: auto;
-  // max-height: 0px;
+
   transition: max-height 0.025s ease-out;
   overflow: hidden;
 }

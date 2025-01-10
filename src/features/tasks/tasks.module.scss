@@ -1,3 +1,5 @@
+@use "/src/shared/styles/variables/colors";
+
 .container {
   box-sizing: border-box;
   display: flex;
@@ -9,6 +11,10 @@
 .content {
   height: 100%;
   overflow: hidden;
+}
+.loading {
+  background-color: colors.$neutral-4;
+  padding: 1rem;
 }
 
 @media (min-width: 768px) {
