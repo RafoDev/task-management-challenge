@@ -1,7 +1,7 @@
 .container {
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(3, minmax(348px, 500px));
+  grid-template-columns: repeat(3, minmax(348px, max-content));
   gap: 2rem;
   width: 100vw;
   height: calc(100vh - 112px);

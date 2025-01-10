@@ -44,7 +44,6 @@ export const updateCacheAfterCreate = (
 export const updateCacheAfterUpdate = (
   cache: ApolloCache<any>,
   updatedTask: TaskFieldsFragment,
-  oldAssigneeId?: string,
   profileId?: string
 ) => {
   const updateTasksInList = (

@@ -11,9 +11,10 @@ type KanbanProps = {
   id: string;
   title: string;
   tasks: TaskFieldsFragment[];
+  isReceiving?: boolean;
 };
 
-export const Kanban = ({ id, title, tasks = [] }: KanbanProps) => {
+export const Kanban = ({ id, title, tasks = [], isReceiving }: KanbanProps) => {
   const { setNodeRef, isOver } = useDroppable({
     id,
     data: {
@@ -22,12 +23,12 @@ export const Kanban = ({ id, title, tasks = [] }: KanbanProps) => {
     },
   });
 
-  const taskContainerClass = isOver
-    ? `${styles.taskContainer} ${styles.isOver}`
-    : styles.taskContainer;
+  const taskContainerClass = `${styles.taskContainer} ${
+    isOver ? styles.isOver : ''
+  } ${isReceiving ? styles.receiving : ''}`;
 
   return (
-    <section ref={setNodeRef} className={styles.container}>
+    <section className={styles.container}>
       <h2 className={`${styles.title} body-l-bold`}>
         {title} ({tasks.length})
       </h2>
@@ -36,10 +37,24 @@ export const Kanban = ({ id, title, tasks = [] }: KanbanProps) => {
         items={tasks.map((task) => task.id)}
         strategy={verticalListSortingStrategy}
       >
-        <section className={taskContainerClass}>
+        <section 
+          className={taskContainerClass} 
+          ref={setNodeRef}
+          data-droppable-id={id}
+        >
           {tasks.map((task, index) => (
-            <TaskCard key={task.id} {...task} index={index} containerId={id} />
+            <TaskCard 
+              key={task.id} 
+              {...task} 
+              index={index} 
+              containerId={id} 
+            />
           ))}
+          {/* {(tasks.length === 0 || isReceiving) && (
+            <div className={styles.emptyState}>
+              <span>Drop here</span>
+            </div>
+          )} */}
         </section>
       </SortableContext>
     </section>

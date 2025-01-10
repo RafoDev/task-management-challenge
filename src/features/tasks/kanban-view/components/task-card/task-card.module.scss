@@ -1,6 +1,13 @@
 @use "/src/shared/styles/variables/colors";
 
+.dropdown {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
 .container {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   background-color: colors.$neutral-4;
@@ -15,6 +22,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .name {
   margin: 0;
 }

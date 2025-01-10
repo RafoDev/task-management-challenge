@@ -34,7 +34,6 @@ export const useTaskMutations = (
       updateCacheAfterUpdate(
         cache,
         data.updateTask,
-        initialData?.assignee?.id,
         profile?.id
       );
     },
