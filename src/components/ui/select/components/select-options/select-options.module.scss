@@ -1,0 +1,13 @@
+@use "/src/shared/styles/variables/colors";
+
+.options {
+  box-sizing: border-box;
+  position: absolute;
+  width: max-content;
+  top: calc(100% + 8px);
+  background-color: colors.$neutral-3;
+  border: 1px solid colors.$neutral-2;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 8px 0px 8px 0px;
+}

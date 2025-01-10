@@ -1,0 +1,71 @@
+@use "/src/shared/styles/variables/colors";
+
+.container {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns:
+    minmax(500px, 45%) minmax(168px, 15%) minmax(140px, 13%)
+    minmax(171px, 15%) minmax(129px, 12%);
+  grid-column: span 5;
+  outline: 1px solid colors.$neutral-3;
+  height: 56px;
+}
+
+.header,
+.tags,
+.points,
+.assignee,
+.dueDate {
+  padding: 8px 12px;
+  align-self: center;
+  height: 100%;
+  outline: 1px solid colors.$neutral-3;
+  box-sizing: border-box;
+}
+
+.header {
+  padding-left: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.tags {
+  display: flex;
+  align-self: center;
+  gap: 8px;
+  overflow: hidden;
+}
+.name {
+  margin: 0;
+}
+.points,
+.dueDate {
+  height: auto;
+  outline: 0;
+}
+.reactions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.assignee {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  &Name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.reactionIcon {
+  width: 16px;
+  height: 16px;
+}
+.dueDate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

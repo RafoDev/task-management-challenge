@@ -1,0 +1,22 @@
+.container {
+  padding: 0px 1rem;
+  min-height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.error {
+}
+.open {
+}
+.empty {
+}
+.placeholder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}

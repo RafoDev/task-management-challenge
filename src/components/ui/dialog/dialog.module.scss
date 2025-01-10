@@ -1,0 +1,30 @@
+@use "/src/shared/styles/variables/colors";
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(2px);
+  background-color: rgba(26, 26, 26, 0.616);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.dialog {
+  background-color: colors.$neutral-3;
+  border-radius: 8px;
+}
+.header {
+}
+.title {
+}
+.closeButton {
+}
+.content {
+}
+.footer {
+}

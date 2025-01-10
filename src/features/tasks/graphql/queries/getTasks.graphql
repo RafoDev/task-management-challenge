@@ -1,0 +1,27 @@
+query GetTasks($name: String, $assigneeId: String) {
+  todoTasks: tasks(
+    input: { status: TODO, name: $name, assigneeId: $assigneeId }
+  ) {
+    ...TaskFields
+  }
+  inProgressTasks: tasks(
+    input: { status: IN_PROGRESS, name: $name, assigneeId: $assigneeId }
+  ) {
+    ...TaskFields
+  }
+  doneTasks: tasks(
+    input: { status: DONE, name: $name, assigneeId: $assigneeId }
+  ) {
+    ...TaskFields
+  }
+  backlogTasks: tasks(
+    input: { status: BACKLOG, name: $name, assigneeId: $assigneeId }
+  ) {
+    ...TaskFields
+  }
+  cancelledTasks: tasks(
+    input: { status: CANCELLED, name: $name, assigneeId: $assigneeId }
+  ) {
+    ...TaskFields
+  }
+}

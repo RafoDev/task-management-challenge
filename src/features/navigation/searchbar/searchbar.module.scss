@@ -1,0 +1,111 @@
+@use "../../../shared/styles/variables/colors";
+.container {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto 1fr min-content;
+  grid-template-areas: "profile input notification";
+  align-items: center;
+  gap: 16px;
+  background-color: colors.$neutral-4;
+  color: inherit;
+  padding: 16px 24px;
+  height: 64px;
+}
+
+.profileContainer {
+  grid-area: profile;
+}
+
+.inputContainer {
+  width: min-content;
+  grid-area: input;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-self: end;
+  justify-content: end;
+  align-items: center;
+  grid-template-areas: "search input clear";
+  overflow: hidden;
+  transition: grid-template-columns 0.25s ease;
+
+  &Show {
+    width: 100%;
+    justify-self: stretch;
+    grid-template-columns: auto 1fr auto;
+  }
+}
+.input {
+  width: 0%;
+  padding: 0;
+  grid-area: input;
+  color: inherit;
+  border: none;
+  background-color: transparent;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  opacity: 0;
+  &:focus {
+    outline: none;
+  }
+  &Show {
+    padding: 0 24px;
+    padding-top: 2px;
+    width: 70%;
+    opacity: 1;
+  }
+  ::placeholder {
+    color: colors.$neutral-2;
+  }
+}
+
+.searchIconContainer,
+.notificationIconContainer,
+.cleanIconContainer {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.searchIconContainer {
+  grid-area: search;
+}
+.cleanIconContainer {
+  grid-area: clear;
+  width: 0px;
+  &Show {
+    width: 20px;
+  }
+}
+
+.notificationIconContainer {
+  grid-area: notification;
+}
+
+.icon {
+  width: 100%;
+  fill: colors.$neutral-2;
+}
+
+@media (min-width: 768px) {
+  .container {
+    border-radius: 1rem;
+    grid-template-columns: 1fr repeat(2, auto);
+    grid-template-areas: "input notification profile";
+    gap: 24px;
+  }
+
+  .profileContainer {
+    grid-area: profile;
+  }
+
+  .inputContainer {
+    width: 100%;
+    justify-self: stretch;
+    grid-template-columns: auto 1fr auto;
+  }
+  .input {
+    padding: 0 24px;
+    padding-top: 2px;
+    width: 70%;
+    opacity: 1;
+  }
+}

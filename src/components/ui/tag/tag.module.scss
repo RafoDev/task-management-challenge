@@ -1,0 +1,38 @@
+@use "/src/shared/styles/variables/colors";
+
+.container {
+  box-sizing: border-box;
+  padding: 8px 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+}
+
+@mixin tag-styles($bg, $color) {
+  background-color: $bg;
+  color: $color;
+}
+
+.style-RAILS,
+.style-neutral,
+.style-placeholder {
+  @include tag-styles(#94979a10, colors.$neutral-1);
+}
+.style-IOS {
+  @include tag-styles(#70b25210, colors.$secondary-4);
+}
+.style-REACT {
+  @include tag-styles(#2f61bf19, #2f61bf);
+}
+.style-ANDROID {
+  @include tag-styles(#e5b45410, colors.$tertiary-4);
+}
+.style-NODE_JS,
+.style-urgent {
+  @include tag-styles(#da584b10, colors.$primary-1);
+}
+
+.style-placeholder {
+  padding: 8px;
+}

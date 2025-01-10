@@ -1,0 +1,19 @@
+@use "/src/shared/styles/variables/fonts";
+@use "/src/shared/styles/variables/colors";
+@use "/src/shared/styles/typography";
+
+:root {
+  --animate-duration: 200ms;
+}
+
+body {
+  margin: 0;
+  font-family: fonts.$main-font, sans-serif;
+  color: colors.$neutral-1;
+  background-color: colors.$neutral-5;
+}
+
+.root {
+  width: 100vw;
+  height: 100vh;
+}

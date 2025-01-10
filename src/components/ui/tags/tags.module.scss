@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-self: center;
+  overflow: hidden;
+  gap: 8px;
+}
+
+.measurementContainer {
+  position: absolute;
+  visibility: hidden;
+  display: flex;
+}
+
+.tagMeasurementContainer {
+  display: inline-block;
+}

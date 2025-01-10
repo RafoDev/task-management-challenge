@@ -1,0 +1,56 @@
+@use "/src/shared/styles/variables/colors";
+.wrapper {
+  background-color: colors.$neutral-t-2;
+  border-radius: 4px;
+}
+
+.inputContainer {
+  box-sizing: border-box;
+  padding: 4px 1rem;
+  display: flex;
+  gap: 10px;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 8px;
+  color: colors.$neutral-1;
+}
+.month {
+  flex-grow: 1;
+}
+.button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+.arrow {
+  color: colors.$neutral-1;
+  width: 11px;
+  height: 11px;
+}
+
+.input {
+  cursor: pointer;
+  flex-shrink: 1;
+  color: colors.$neutral-1;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: 100px;
+  &:focus {
+    border: none;
+    outline: none;
+  }
+  &::placeholder {
+    color: colors.$neutral-1;
+  }
+}

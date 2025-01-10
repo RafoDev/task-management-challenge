@@ -1,0 +1,60 @@
+@use "/src/shared/styles/variables/colors";
+
+$border-neutral-3: 1px solid colors.$neutral-3;
+
+.table {
+  box-sizing: border-box;
+  min-width: 1108px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.row {
+  width: 100%;
+}
+
+.cell {
+  background-color: colors.$neutral-4;
+  border: $border-neutral-3;
+  padding: 1rem;
+  height: 56px;
+  box-sizing: border-box;
+  text-align: start;
+  vertical-align: middle;
+  color: colors.$neutral-1;
+}
+
+.table .row:first-child .cell:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.table .row:last-child .cell:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.cell {
+  &:nth-child(1) {
+    min-width: 500px;
+    max-width: 45%;
+  }
+  &:nth-child(2) {
+    min-width: 168px;
+    max-width: 15%;
+  }
+
+  &:nth-child(3) {
+    min-width: 140px;
+    max-width: 13%;
+  }
+
+  &:nth-child(4) {
+    min-width: 171px;
+    max-width: 15%;
+  }
+
+  &:nth-child(5) {
+    min-width: 129px;
+    max-width: 12%;
+  }
+}

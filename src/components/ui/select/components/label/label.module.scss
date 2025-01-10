@@ -1,0 +1,14 @@
+@use "/src/shared/styles/variables/colors";
+
+.container {
+  box-sizing: border-box;
+  padding: 4px 1rem;
+  transition: background-color 0.05s ease-in-out;
+  display: flex;
+  user-select: none;
+  cursor: default;
+}
+.content {
+  width: 100%;
+  color: colors.$neutral-2;
+}

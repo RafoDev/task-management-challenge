@@ -1,0 +1,74 @@
+@use "/src/shared/styles/variables/colors";
+
+.container {
+  position: relative;
+}
+
+.trigger {
+  padding: 4px;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: colors.$neutral-2;
+    .icon {
+      color: colors.$neutral-3;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  .icon {
+    width: 100%;
+    color: colors.$neutral-2;
+    transition: color 0.05s;
+  }
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  color: colors.$neutral-2;
+  transition: color 0.05s;
+}
+.options {
+  z-index: 1000;
+  border: 1px solid colors.$neutral-2;
+  border-radius: 8px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 138px;
+  list-style: none;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: colors.$neutral-3;
+}
+.option {
+  height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 4px 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  .icon {
+    color: colors.$neutral-1;
+    width: 18px;
+    height: 18px;
+  }
+  &:hover {
+    background-color: colors.$neutral-2;
+  }
+}

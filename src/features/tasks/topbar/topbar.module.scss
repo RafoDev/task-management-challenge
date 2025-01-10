@@ -1,0 +1,94 @@
+@use "/src/shared/styles/variables/colors";
+
+.container {
+  display: flex;
+  background-color: colors.$neutral-4;
+}
+.button {
+  padding: 12px;
+  text-align: center;
+  flex-grow: 1;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: colors.$neutral-2;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  width: 100%;
+  transition: border 0.25s, color 0.25s;
+  cursor: pointer;
+  &Active {
+    border-bottom: 2px solid colors.$primary-4;
+    color: colors.$primary-4;
+  }
+}
+
+.iconContainer {
+  display: none;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.icon {
+  width: 100%;
+  height: 100%;
+}
+.create {
+  z-index: 100;
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  box-sizing: border-box;
+  padding: 12px;
+  color: colors.$neutral-1;
+  background-color: colors.$primary-4;
+  border: 0;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  transition: background-color 0.25s;
+  border-radius: 100%;
+
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    background-color: colors.$primary-3;
+  }
+  & .icon {
+    width: 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  .create {
+    border-radius: 8px;
+    position: static;
+    justify-self: end;
+  }
+  .label {
+    display: none;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: min-content min-content 1fr;
+    background-color: transparent;
+  }
+  .iconContainer {
+    display: block;
+  }
+  .button {
+    flex-grow: 0;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    color: colors.$neutral-1;
+    border-radius: 8px;
+    transition: border 0.25s, color 0.25s;
+    border: 1px solid transparent;
+    &Active {
+      border: 1px solid colors.$primary-4;
+      color: colors.$primary-4;
+    }
+  }
+}

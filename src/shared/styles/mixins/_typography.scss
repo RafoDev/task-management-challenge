@@ -1,0 +1,13 @@
+@use "/src/shared/styles/variables/fonts";
+
+@mixin text-styles(
+  $fontSize,
+  $lineHeight,
+  $letterSpacing: 1px,
+  $fontWeight: fonts.$main-font-weight-regular
+) {
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  letter-spacing: $letterSpacing;
+  font-weight: $fontWeight;
+}
