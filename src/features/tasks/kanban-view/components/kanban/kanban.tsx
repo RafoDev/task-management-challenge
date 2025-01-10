@@ -24,8 +24,8 @@ export const Kanban = ({ id, title, tasks = [], isReceiving }: KanbanProps) => {
   });
 
   const taskContainerClass = `${styles.taskContainer} ${
-    isOver ? styles.isOver : ''
-  } ${isReceiving ? styles.receiving : ''}`;
+    isOver ? styles.isOver : ""
+  } ${isReceiving ? styles.receiving : ""}`;
 
   return (
     <section className={styles.container}>
@@ -37,18 +37,13 @@ export const Kanban = ({ id, title, tasks = [], isReceiving }: KanbanProps) => {
         items={tasks.map((task) => task.id)}
         strategy={verticalListSortingStrategy}
       >
-        <section 
-          className={taskContainerClass} 
+        <section
+          className={taskContainerClass}
           ref={setNodeRef}
           data-droppable-id={id}
         >
           {tasks.map((task, index) => (
-            <TaskCard 
-              key={task.id} 
-              {...task} 
-              index={index} 
-              containerId={id} 
-            />
+            <TaskCard key={task.id} {...task} index={index} containerId={id} />
           ))}
           {/* {(tasks.length === 0 || isReceiving) && (
             <div className={styles.emptyState}>
