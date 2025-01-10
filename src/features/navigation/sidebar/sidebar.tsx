@@ -4,6 +4,7 @@ import styles from "./sidebar.module.scss";
 import DashboardIcon from "/src/assets/icons/dashboard.svg?react";
 import TaskIcon from "/src/assets/icons/list.svg?react";
 import PersonIcon from "/src/assets/icons/person.svg?react";
+import ListIcon from "/src/assets/icons/list.svg?react";
 import RavnLogo from "/src/assets/images/ravn.png";
 
 const options: OptionType[] = [
@@ -35,7 +36,9 @@ export const Sidebar = () => {
           setHideSidebar(!hideSidebar);
         }}
       >
-        <span className={styles.toggleButtonContent}>+</span>
+        <span className={styles.toggleButtonContent}>
+          <ListIcon className={styles.icon}/>
+        </span>
       </button>
     </aside>
   );

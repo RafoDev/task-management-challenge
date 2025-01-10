@@ -8,20 +8,11 @@
   background-color: colors.$neutral-4;
   display: flex;
   flex-direction: column;
-  transition: left 0.25s;
+  transition: left 0.25s ease-in;
+  z-index: 6000;
   &Show {
     left: -100%;
   }
-}
-
-.overlay {
-  top: 0;
-  left: 50%;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: red;
-  display: none;
 }
 
 .logoContainer {
@@ -44,14 +35,27 @@
 }
 
 .toggleButton {
+  background-color: colors.$neutral-3;
+  box-shadow: 0px 0px 0px 5px colors.$neutral-t-2;
+  cursor: pointer;
+  border: none;
   z-index: 6000;
   position: absolute;
-  bottom: 1rem;
+  bottom: 1.5rem;
   right: -3.5rem;
   border-radius: 100%;
   box-sizing: border-box;
   width: 40px;
   height: 40px;
+  color: colors.$neutral-2;
+  transition: box-shadow 0.25s;
+  &:active {
+    box-shadow: 0px 0px 0px 10px colors.$neutral-t-2;
+  }
+}
+
+.icon {
+  width: 17px;
 }
 
 @media (min-width: 768px) {

@@ -34,6 +34,7 @@
   height: 100%;
 }
 .create {
+  z-index: 100;
   position: absolute;
   bottom: 1.5rem;
   right: 1.5rem;
@@ -53,6 +54,9 @@
   }
   &:hover {
     background-color: colors.$primary-3;
+  }
+  & .icon {
+    width: 14px;
   }
 }
 
