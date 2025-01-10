@@ -25,6 +25,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       onChange,
       onBlur = () => {},
       placeholder = "Select...",
+      icon: PlaceholderIcon,
       error,
       className = "",
       multiple = false,
@@ -90,6 +91,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           <SelectTrigger
             displayValue={getDisplayValue()}
             placeholder={placeholder}
+            icon={PlaceholderIcon}
             isOpen={isOpen}
             hasError={!!error}
             onClick={() => setIsOpen(!isOpen)}

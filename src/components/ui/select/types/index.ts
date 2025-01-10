@@ -1,4 +1,4 @@
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { ForwardRefExoticComponent, ReactNode, RefAttributes } from "react";
 
 export type SingleSelectValue = string | number | undefined;
 export type MultipleSelectValue = Array<string | number> | undefined;
@@ -24,15 +24,16 @@ export type SelectProps = Omit<
   error?: string;
   className?: string;
   multiple?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
 };
 export type LabelProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export type OptionProps = {
   value: string | number;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export type SelectComponent = ForwardRefExoticComponent<

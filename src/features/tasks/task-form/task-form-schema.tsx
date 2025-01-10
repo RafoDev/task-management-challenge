@@ -27,9 +27,11 @@ const TaskTagEnum = z.enum([
 
 const BaseTaskSchema = z.object({
   assigneeId: z.string().optional(),
-  dueDate: z.string().refine((val) => !isNaN(Date.parse(val)), {
-    message: "Invalid date format",
-  }),
+  dueDate: z
+    .string({ message: "Due date is required" })
+    .refine((val) => !isNaN(Date.parse(val)), {
+      message: "Invalid date format",
+    }),
   name: z.string().min(1, "Task name is required"),
   pointEstimate: PointEstimateEnum,
   status: StatusEnum,

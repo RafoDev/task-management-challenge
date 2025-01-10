@@ -19,6 +19,8 @@
   display: inline-block;
   padding: 0;
   border: 0;
+  // background-color: colors.$neutral-t-2;
+  cursor: pointer;
 }
 
 .react-datepicker {
@@ -55,12 +57,13 @@
 }
 
 .react-datepicker__header {
+  height: auto;
   text-align: center;
   background-color: colors.$neutral-5;
   // border-bottom: 1px solid #aeaeae;
   border-bottom: none;
   border-top-left-radius: colors.$neutral-2;
-  padding: 8px 0 0 0;
+  // padding: 8px 0 0 0;
   position: relative;
 }
 .react-datepicker__header--time {
@@ -807,13 +810,19 @@ h2.react-datepicker__current-month {
 }
 
 .react-datepicker__today-button {
-  background: #f0f0f0;
+  background: colors.$neutral-5;
   border-top: 1px solid #aeaeae;
+  color: colors.$primary-4;
   cursor: pointer;
   text-align: center;
   font-weight: bold;
   padding: 5px 0;
   clear: left;
+  display: flex;
+  box-sizing: border-box;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
 }
 
 .react-datepicker__portal {

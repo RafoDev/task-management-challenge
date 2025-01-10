@@ -1,6 +1,8 @@
 @use "/src/shared/styles/variables/colors";
 
 .container {
+  display: flex;
+  gap: 10px;
   box-sizing: border-box;
   padding: 4px 1rem;
   width: auto;
@@ -14,6 +16,9 @@
 .label {
   box-sizing: border-box;
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .selected {
   background-color: colors.$neutral-5;

@@ -13,7 +13,7 @@ import Dialog from "../../../components/ui/dialog/dialog";
 import { TaskFormFields } from "./components/task-form-fields";
 import styles from "./task-form.module.scss";
 
-interface TaskFormProps {
+type TaskFormProps = {
   initialData?: TaskFormValue & {
     id?: string;
     assignee?: TaskFieldsFragment["assignee"];
@@ -23,15 +23,15 @@ interface TaskFormProps {
   isTaskFormOpen: boolean;
   openTaskForm: () => void;
   closeTaskForm: () => void;
-}
+};
 
-export const TaskForm: React.FC<TaskFormProps> = ({
+export const TaskForm = ({
   initialData,
   onSuccess,
   isTaskFormOpen,
   openTaskForm,
   closeTaskForm,
-}) => {
+}: TaskFormProps) => {
   const { data: usersData } = useGetUsersQuery();
 
   const {
@@ -39,6 +39,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
     control,
     handleSubmit,
     formState: { errors, isValid },
+    reset,
   } = useForm<TaskFormValue>({
     resolver: zodResolver(
       initialData?.id ? UpdateTaskSchema : CreateTaskSchema
@@ -52,14 +53,24 @@ export const TaskForm: React.FC<TaskFormProps> = ({
     mode: "onChange",
   });
 
+  const handleClose = () => {
+    reset({
+      status: Status.Todo,
+      tags: [],
+      ...initialData,
+      assigneeId: initialData?.assignee?.id || initialData?.assigneeId,
+    });
+    closeTaskForm();
+  };
+
   const { handleSubmit: onSubmit, isEditMode } = useTaskMutations(
     initialData,
-    closeTaskForm,
+    handleClose,
     onSuccess
   );
 
   return (
-    <Dialog open={isTaskFormOpen} onOpen={openTaskForm} onClose={closeTaskForm}>
+    <Dialog open={isTaskFormOpen} onOpen={openTaskForm} onClose={handleClose}>
       <Dialog.Content>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <TaskFormFields
@@ -71,7 +82,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
 
           <footer className={styles.buttons}>
             <button
-              onClick={() => closeTaskForm()}
+              onClick={() => handleClose()}
               className={`${styles.close} body-m-regular`}
             >
               Close
