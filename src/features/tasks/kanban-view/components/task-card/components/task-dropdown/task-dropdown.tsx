@@ -3,12 +3,12 @@ import PenIcon from "/src/assets/icons/pen.svg?react";
 import TrashIcon from "/src/assets/icons/trash.svg?react";
 import Dropdown from "../../../../../../../components/ui/dropdown/dropdown";
 import { TaskFieldsFragment } from "../../../../../graphql/fragments/taskFields.generated";
-import { TaskForm, useTaskForm } from "../../../../../task-form/task-form";
 import {
   DeleteTaskDialog,
   useConfirmationDialog,
 } from "../../../../../delete-task-dialog/delete-task-dialog";
 import styles from "./task-dropdown.module.scss";
+import { TaskForm, useTaskForm } from "../../../../../task-form";
 
 export const TaskDropdown = (props: TaskFieldsFragment) => {
   const { isTaskFormOpen, openTaskForm, closeTaskForm } = useTaskForm();

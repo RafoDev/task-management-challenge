@@ -1,21 +1,17 @@
-query GetAllTasks($status: Status!) {
-  tasks(input: { status: $status }) {
-    id
-    name
-    status
-    dueDate
-    pointEstimate
-    tags
-    position
-    assignee {
-      id
-      fullName
-      avatar
-    }
-    creator {
-      id
-      fullName
-    }
-    createdAt
+query GetTasks($name: String, $assigneeId: String) {
+  todoTasks: tasks(
+    input: { status: TODO, name: $name, assigneeId: $assigneeId }
+  ) {
+    ...TaskFields
+  }
+  inProgressTasks: tasks(
+    input: { status: IN_PROGRESS, name: $name, assigneeId: $assigneeId }
+  ) {
+    ...TaskFields
+  }
+  doneTasks: tasks(
+    input: { status: DONE, name: $name, assigneeId: $assigneeId }
+  ) {
+    ...TaskFields
   }
 }

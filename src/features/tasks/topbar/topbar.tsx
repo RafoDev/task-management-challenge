@@ -2,8 +2,8 @@ import GridIcon from "/src/assets/icons/dashboard.svg?react";
 import ListIcon from "/src/assets/icons/list.svg?react";
 import styles from "./topbar.module.scss";
 import { useTaskLayout } from "../../../components/layouts/tasks-layout/tasks-layout";
-import { TaskForm, useTaskForm } from "../task-form/task-form";
 import PlusIcon from "/src/assets/icons/plus.svg?react";
+import { TaskForm, useTaskForm } from "../task-form";
 
 export const Topbar = () => {
   const { toggleViewMode, viewMode } = useTaskLayout();

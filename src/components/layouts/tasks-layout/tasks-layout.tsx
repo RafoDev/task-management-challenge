@@ -10,8 +10,8 @@ import {
 } from "react";
 import { ViewModes } from "../../../features/tasks/types";
 import { Tasks } from "../../../features/tasks/tasks";
-import { useGetKanbanTasksQuery } from "../../../features/tasks/graphql/queries/getKanbanTasks.generated";
 import useDebounce from "../../../shared/hooks/use-debounce";
+import { useGetTasksQuery } from "../../../features/tasks/graphql/queries/getTasks.generated";
 
 type TasksLayoutProps = {
   defaultViewMode?: ViewModes;
@@ -91,12 +91,30 @@ const TasksContent = () => {
   const { searchQuery, profileId } = useTaskLayout();
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
-  const { data, loading } = useGetKanbanTasksQuery({
+  const { data, loading, refetch } = useGetTasksQuery({
     variables: {
       name: debouncedSearchQuery.length > 1 ? debouncedSearchQuery : undefined,
       assigneeId: profileId,
     },
   });
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        refetch();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [refetch]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, [refetch]);
 
   return (
     <div className={styles.container}>
